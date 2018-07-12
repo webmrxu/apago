@@ -1,0 +1,37 @@
+/**index.wxss**/
+.video__content{
+  text-align: center;
+  width: 750rpx;
+  height: 662px;
+  z-index: 100;
+  position: fixed;
+}
+
+.video-height{
+  width: 100%;
+  background: #fff;
+  font-size: 12px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  padding: 20px 0;
+}
+.video-footer{
+  width: 100%;
+  background: #fff;
+  font-size: 12px;
+  position: fixed;
+  bottom: 0;
+  z-index: 1000;
+  padding: 20px 0;
+}
+
+/* test */
+.canvas {
+  width: 305px;
+  height: 305px;
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  z-index: 500;
+}
