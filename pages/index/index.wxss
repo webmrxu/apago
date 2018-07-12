@@ -1,10 +1,13 @@
 /**index.wxss**/
+/* width: 750rpx;
+  height: 1334rpx; */
 .video__content{
   text-align: center;
   width: 750rpx;
   height: 1334rpx;
   z-index: 100;
   position: fixed;
+  object-fit: fill;
 }
 
 .video-height{
@@ -28,10 +31,6 @@
 
 /* test */
 .canvas {
-  width: 305px;
-  height: 305px;
   position: fixed;
-  top: 100px;
-  left: 100px;
   z-index: 500;
 }

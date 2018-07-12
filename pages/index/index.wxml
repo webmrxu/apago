@@ -1,8 +1,10 @@
  <view class="video__window">
-      <!-- loop="loop" 循环 autoplay="autoplay" 自动播放-->
+      <!-- loop="loop" 循环 autoplay="autoplay" 自动播放 bindtimeupdate: 播放中获取播放进度-->
       <video 
           src="https://www.apago.top/video/awesome.mp4" 
           class="video__content"  
+          id="video"
+          bindtimeupdate="bindtimeupdate"
           >
           <cover-view class="video-height">
             <cover-view>奇趣时空</cover-view>
@@ -16,7 +18,7 @@
 
 <view class="page-body">
   <view class="page-body-wrapper">
-    <canvas canvas-id="canvas" class="canvas"></canvas>
+    <canvas canvas-id="canvas" style='height:{{videoHeight}}px;width:{{videoWidth}}px' class="canvas"></canvas>
   </view>
 </view>
 
