@@ -1,9 +1,9 @@
  <view class="video__window">
+      <!-- loop="loop" 循环 autoplay="autoplay" 自动播放-->
       <video 
-          src="https://anydata.22332008.com/qwfy/awesome.mp4" 
+          src="https://www.apago.top/video/awesome.mp4" 
           class="video__content"  
-          autoplay="autoplay">
-
+          >
           <cover-view class="video-height">
             <cover-view>奇趣时空</cover-view>
           </cover-view>

@@ -4,15 +4,19 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false
+    fps: 24, // 动画帧
+    screenWidth: 0, // 屏幕宽度
+    screenHeight: 0, // 屏幕高度
+    videoWidth: 0, // video 元素宽度，对应canvas元素宽度
+    videoHeight: 0 // video 元素高度，对应canvas元素高度
   },
   canvasIdErrorCallback: function (e) {
-    console.error(e.detail.errMsg)
+    console.error('canvas画布启动失败：' + e.detail.errMsg)
   },
   onReady: function () {
     this.initCanvas()
+    console.log(this.data.fps)
+    // this.interval = setInterval(this.drawBall, 17)
   },
   initCanvas: function () {
     

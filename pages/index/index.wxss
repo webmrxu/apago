@@ -2,7 +2,7 @@
 .video__content{
   text-align: center;
   width: 750rpx;
-  height: 662px;
+  height: 1334rpx;
   z-index: 100;
   position: fixed;
 }
