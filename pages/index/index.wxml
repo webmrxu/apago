@@ -1,0 +1,22 @@
+ <view class="video__window">
+      <video 
+          src="https://anydata.22332008.com/qwfy/awesome.mp4" 
+          class="video__content"  
+          autoplay="autoplay">
+
+          <cover-view class="video-height">
+            <cover-view>奇趣时空</cover-view>
+          </cover-view>
+
+          <cover-view class="video-footer">
+            <cover-view>礼品详情</cover-view>
+          </cover-view>
+      </video>
+</view> 
+
+<view class="page-body">
+  <view class="page-body-wrapper">
+    <canvas canvas-id="canvas" class="canvas"></canvas>
+  </view>
+</view>
+
