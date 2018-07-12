@@ -1,14 +1,25 @@
- <view class="video__window">
-      <!-- loop="loop" 循环 autoplay="autoplay" 自动播放 bindtimeupdate: 播放中获取播放进度-->
-      <video 
-          src="https://www.apago.top/video/awesome.mp4" 
-          class="video__content"  
-          id="video"
-          bindtimeupdate="bindtimeupdate"
-          >
-          
-      </video>
-</view> 
+<!-- loop="loop" 循环 autoplay="autoplay" 自动播放 bindtimeupdate: 播放中获取播放进度-->
+   <view class="video__window">
+  <video 
+      src="https://www.apago.top/video/awesome.mp4" 
+      class="video__content"  
+      id="video"
+      loop="loop"
+      autoplay="autoplay"
+      bindtimeupdate="bindtimeupdate"
+      bindplay="bindplay"
+      >
+      
+  </video>
+</view>    
+
+<!-- <view class="btn-area">
+  <view class="body-view">
+    <text>hello world</text>
+    <button bindtap="add">add line</button>
+    <button bindtap="remove">remove line</button>
+  </view>
+</view> -->
 
 <view class="page-body">
   <view class="page-body-wrapper">
@@ -18,7 +29,13 @@
       </cover-view>
 
       <cover-view class="video-footer">
-        <cover-view>礼品详情</cover-view>
+        <cover-view>活动介绍详情</cover-view>
+
+        <cover-view class="clolor {{showText?'show':'hide'}}">活动介绍详情活动介绍详情活动介绍详情</cover-view>
+      </cover-view>
+
+      <cover-view class="center-button {{showTestButton?'center-button-show':'center-button-hiden'}} ">
+        <cover-view bindtap="doTestAction">点我点我</cover-view>
       </cover-view>
     </canvas>
   </view>

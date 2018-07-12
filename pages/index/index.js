@@ -10,8 +10,12 @@ Page({
     videoWidth: 0, // video 元素宽度，对应canvas元素宽度
     videoHeight: 0, // video 元素高度，对应canvas元素高度
     videoContext: {},
-    currentTime: 0,
-    logoImg: 'https://www.apago.top/video/logos.png'
+    currentTime: 0, // 当前视频播放的进度
+    logoImg: 'https://www.apago.top/video/logos.png', // logo图片资源地址
+
+    showTestButton: false, // 以下为动画状态
+
+    showText: false // 以下为页面状态
   },
   canvasIdErrorCallback: function (e) {
     console.error('canvas画布启动失败：' + e.detail.errMsg)
@@ -57,6 +61,37 @@ Page({
         ani()
       }
     }
+  },
+  doTestAction: function() {
+    console.log('我知道了')
+    this.setData({
+      showText: true
+    })
+  },
+  animation_100: function() {
+    /**
+     * 以视频开始100 毫秒时，初始化状态
+     */
+    let ctx = wx.createContext();
+    ctx.clearRect(0, 0, this.data.videoWidth, this.data.videoHeight);
+    wx.drawCanvas({
+      canvasId: 'canvas',
+      actions: ctx.getActions()
+    })
+
+    this.setData({
+      showText: false
+    })
+  },
+  animation_1000: function() {
+    this.setData({
+      showTestButton: true
+    })
+  },
+  animation_4000: function () {
+    this.setData({
+      showTestButton: false
+    })
   },
   animation_7000: function() {
     let ctxSetting = {
@@ -105,7 +140,6 @@ Page({
       } else {
         ctx.drawImage(me.data.logoImg, textX, (me.data.screenHeight - 66) / 2);
       }
-      // ctx.drawImage(me.data.logoImg, 77.5, (me.data.screenHeight - 66) / 2);
       
       wx.drawCanvas({
         canvasId: 'canvas',
@@ -113,18 +147,6 @@ Page({
       })
     }
 
-    // let context = wx.createContext()
-    // context.beginPath(0)
-    // context.arc(150, 50, 5, 0, Math.PI * 2)
-    // context.setFillStyle('#f46a64')
-    // context.setStrokeStyle('rgba(1,1,1,0)')
-    // context.fill()
-    // context.stroke()
-
-    // wx.drawCanvas({
-    //   canvasId: 'canvas',
-    //   actions: context.getActions()
-    // })
   },
   bindEvent: function() {
     // this.videoContext
@@ -137,7 +159,7 @@ Page({
     this.setData({
       videoContext: wx.createVideoContext('video')
     })
-    this.videoContext.play()
+    // this.videoPlay()
     /**
      * 获取窗口的宽度和高度
      */
@@ -159,7 +181,6 @@ Page({
         videoHeight: res[0].height
       })
     })
-    
   },
   downlodFile: function() {
     let me = this
@@ -172,5 +193,12 @@ Page({
       },
       fail: () => {console.log('logo 图片加载失败')}
     })
+  },
+  videoPlay: function() {
+    this.videoContext.play()
+  },
+  bindplay: function() {
+    console.log('start')
+    console.log(this.data.currentTime)
   }
 })

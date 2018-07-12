@@ -28,12 +28,60 @@
   position: fixed;
   bottom: 0;
   z-index: 1000;
-  padding: 20px 0;
+  padding: 16px 0;
   text-align: center;
+  height: 200px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.03);
 }
 
 /* test */
 .canvas {
   position: fixed;
   z-index: 110;
+}
+.center-button{
+  position: fixed;
+  z-index: 1000;
+  top: 150px;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  padding: 8px;
+  border-radius: 10px;
+  color: #fff;
+  transition: 0.5s ease all;
+}
+.center-button-hiden{
+  left: -100px;
+}
+.center-button-show{
+  left: 20px;
+}
+
+
+/**
+* 一下可编写公共样式
+**/
+.clolor{
+  color: #f46a64;
+}
+.show{
+  display: inherit;
+}
+.hide{
+  display: none;
+}
+.shadow{
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.03);
+}
+.shadow-t{
+  box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.03);
+}
+.shadow-b{
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.03);
+}
+.shadow-l{
+  box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.03);
+}
+.shadow-r{
+  box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.03);
 }
