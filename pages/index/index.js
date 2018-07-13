@@ -20,15 +20,14 @@ Page({
   canvasIdErrorCallback: function (e) {
     console.error('canvas画布启动失败：' + e.detail.errMsg)
   },
+  videoBinderror: function(e) {
+    console.error('视频播放错误' + e.detail.errMsg)
+  },
   onReady: function () {
     /**
      * 页面初始化
      */
     this.initPage()
-    /**
-     * 页面元素事件绑定
-     */
-    this.bindEvent()
     /**
      * 页面资源加载
      */
@@ -38,7 +37,7 @@ Page({
   },
   bindtimeupdate: function(event) {
     /**
-     * 视频播放触发事件，获取视频播放信息，进度
+     * 视频播中放触发事件，获取视频播放信息，进度
      */
     let currentTIme = event.detail.currentTime.toFixed(1) * 1000;
     // 播放时间映射到动画
@@ -47,7 +46,6 @@ Page({
     this.setData({
       currentTime: currentTIme
     })
-    // pageObj.currentTime = currentTIme;
   },
   timeMappingAnimation: function (currentTime){
     /**
@@ -55,7 +53,7 @@ Page({
      */
     let gapTimes = (currentTime - this.data.currentTime) / 100;
     for (let i = 0; i < gapTimes; i++) {
-      let keyAnimation = 'animation_' + (this.data.currentTime + i * 100)
+      let keyAnimation = 'videoMappingAnimation_' + (this.data.currentTime + i * 100)
       // console.log(keyAnimation)
       if (this[keyAnimation]) {
         let ani = this[keyAnimation]
@@ -84,30 +82,30 @@ Page({
       showText: false
     })
   },
-  bindended: function() {
+  videoBindended: function() {
     /**
      * 视频播放到末尾时触发的事件
      * 视频循环时不会触发该事件
      */
     this.videoInit()
   },
-  animation_300: function() {
+  videoMappingAnimation_300: function() {
     /**
      * 以视频开始100 毫秒时，初始化状态
      */
     this.videoInit()
   },
-  animation_1000: function() {
+  videoMappingAnimation_1000: function() {
     this.setData({
       showTestButton: true
     })
   },
-  animation_6000: function () {
+  videoMappingAnimation_6000: function () {
     this.setData({
       showTestButton: false
     })
   },
-  animation_7000: function() {
+  videoMappingAnimation_400: function() {
     let ctxSetting = {
       lineWidth: 5,
       centerX: this.data.videoWidth / 2,
@@ -115,55 +113,24 @@ Page({
       fillStyle: '#fff', // 填充颜色
       strokeStyle: '#fff', // 描边颜色
       fps: 24, // 动画帧数
-      animationTime: 2 //动画时长，单位 秒
+      animationTime: 18 //视频的时长， 单位为秒
     }
+    
     // console.log(ctxSetting)
     let allTimes = ctxSetting.fps * ctxSetting.animationTime; //  定时器总执行次数
     let times = 0; // 当前定时器执行次数
     let timer = setInterval(() => {
-      times = times + 1;
-      let x = this.data.videoWidth + 333 - times * (this.data.videoHeight + 333) / allTimes;
-      animationFps(x, ctxSetting.centerY);
+      times = times + 1
+      // console.log(times)
+      // 映射帧动画
+      this.fpsMappingAnimation(ctxSetting, times)
+      
       if (times == allTimes) {
+        console.log('结束定时器')
         clearInterval(timer);
       }
     }, 1000 / ctxSetting.fps)
     let me = this
-    function animationFps(x, y) {
-      let ctx = wx.createContext()
-      ctx.clearRect(0, 0, me.data.videoWidth, me.data.videoHeight);
-      ctx.beginPath();
-      ctx.fillStyle = ctxSetting.fillStyle;
-      ctx.strokeStyle = ctxSetting.strokeStyle;
-
-      // 画圈
-      // ctx.arc(x, y, pageObj.screenHeight/2, 0.5*Math.PI, 1.5*Math.PI);
-      // 绘制二次贝塞尔曲线
-      ctx.moveTo(x, 0)
-      ctx.quadraticCurveTo(x - 400, y, x, me.data.videoHeight);
-      // 绘制全屏
-      ctx.lineTo(me.data.videoWidth, me.data.videoHeight);
-      ctx.lineTo(me.data.videoWidth, 0);
-      ctx.stroke();
-      ctx.closePath();
-      ctx.fill();
-      // 绘制中行logo
-      let textX = x + (me.data.screenWidth - 220) / 2 - 160;
-      if (textX < 77.5) {
-        ctx.drawImage(me.data.logoImg, 77.5, (me.data.screenHeight - 66) / 2);
-      } else {
-        ctx.drawImage(me.data.logoImg, textX, (me.data.screenHeight - 66) / 2);
-      }
-      
-      wx.drawCanvas({
-        canvasId: 'canvas',
-        actions: ctx.getActions()
-      })
-    }
-
-  },
-  bindEvent: function() {
-    // this.videoContext
   },
   initPage: function() {
     /**
@@ -211,10 +178,60 @@ Page({
   videoPlay: function() {
     this.videoContext.play()
   },
-  bindplay: function() {
+  videoBindplay: function() {
     /**
      * 视频开始播放时触发
-     * 如果视频循环播放，只会在第一次开始播放时触发事件
+     * 如果视频循环播放，只会在第一次循环时触发事件
      */
+  },
+  fpsMappingAnimation: function(setting, fps) {
+    /**
+     * 所有的canvas动画帧
+     */
+    
+    timeToAnimation.bind(this)(2, 5, coverLogo)
+    /**
+     * 时间映射动画
+     * @params start 开始时间，单位秒
+     * @params end 结束时间，单位秒
+     * @params animation 时间内对应的动画
+     */
+    function timeToAnimation(start, end, animation) {
+      if (fps >= start * setting.fps && fps <= end * setting.fps) {
+        animation.bind(this)(fps - start * setting.fps, (end - start) * setting.fps)
+      }
+    }
+
+    function coverLogo(currentFps, allFps) {
+      // console.log(currentFps, allFps)
+      let x = this.data.videoWidth + 333 - currentFps * (this.data.videoHeight + 333) / allFps;
+      
+      let ctx = wx.createCanvasContext('canvas')
+      ctx.clearRect(0, 0, this.data.videoWidth, this.data.videoHeight)
+      ctx.beginPath();
+      ctx.fillStyle = setting.fillStyle;
+      ctx.strokeStyle = setting.strokeStyle;
+
+      // // 绘制二次贝塞尔曲线
+      ctx.moveTo(x, 0)
+      ctx.quadraticCurveTo(x - 400, this.data.videoHeight / 2, x, this.data.videoHeight);
+      // // 绘制全屏
+      ctx.lineTo(this.data.videoWidth, this.data.videoHeight);
+      ctx.lineTo(this.data.videoWidth, 0);
+      ctx.stroke();
+      ctx.closePath();
+      ctx.fill();
+      // // // 绘制中行logo
+      let textX = x + (this.data.screenWidth - 220) / 2 - 160;
+      if (textX < 77.5) {
+        ctx.drawImage(this.data.logoImg, 77.5, (this.data.screenHeight - 66) / 2);
+      } else {
+        ctx.drawImage(this.data.logoImg, textX, (this.data.screenHeight - 66) / 2);
+      }
+      wx.drawCanvas({
+        canvasId: 'canvas',
+        actions: ctx.getActions()
+      })
+    }
   }
 })

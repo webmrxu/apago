@@ -7,8 +7,9 @@
       loop="loop"
       autoplay="autoplay"
       bindtimeupdate="bindtimeupdate"
-      bindplay="bindplay"
-      bindended="bindended"
+      bindplay="videoBindplay"
+      bindended="videoBindended"
+      binderror="videoBinderror"
       >
       
   </video>
