@@ -56,6 +56,7 @@ Page({
     let gapTimes = (currentTime - this.data.currentTime) / 100;
     for (let i = 0; i < gapTimes; i++) {
       let keyAnimation = 'animation_' + (this.data.currentTime + i * 100)
+      // console.log(keyAnimation)
       if (this[keyAnimation]) {
         let ani = this[keyAnimation]
         ani()
@@ -68,9 +69,9 @@ Page({
       showText: true
     })
   },
-  animation_100: function() {
+  videoInit: function() {
     /**
-     * 以视频开始100 毫秒时，初始化状态
+     * 视频初始化，回到视频开始播放前状态
      */
     let ctx = wx.createContext();
     ctx.clearRect(0, 0, this.data.videoWidth, this.data.videoHeight);
@@ -83,12 +84,25 @@ Page({
       showText: false
     })
   },
+  bindended: function() {
+    /**
+     * 视频播放到末尾时触发的事件
+     * 视频循环时不会触发该事件
+     */
+    this.videoInit()
+  },
+  animation_300: function() {
+    /**
+     * 以视频开始100 毫秒时，初始化状态
+     */
+    this.videoInit()
+  },
   animation_1000: function() {
     this.setData({
       showTestButton: true
     })
   },
-  animation_4000: function () {
+  animation_6000: function () {
     this.setData({
       showTestButton: false
     })
@@ -198,7 +212,9 @@ Page({
     this.videoContext.play()
   },
   bindplay: function() {
-    console.log('start')
-    console.log(this.data.currentTime)
+    /**
+     * 视频开始播放时触发
+     * 如果视频循环播放，只会在第一次开始播放时触发事件
+     */
   }
 })

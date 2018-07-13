@@ -8,6 +8,7 @@
       autoplay="autoplay"
       bindtimeupdate="bindtimeupdate"
       bindplay="bindplay"
+      bindended="bindended"
       >
       
   </video>
