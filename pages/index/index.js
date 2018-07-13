@@ -110,8 +110,6 @@ Page({
       lineWidth: 5,
       centerX: this.data.videoWidth / 2,
       centerY: this.data.videoHeight / 2,
-      fillStyle: '#fff', // 填充颜色
-      strokeStyle: '#fff', // 描边颜色
       fps: 24, // 动画帧数
       animationTime: 18 //视频的时长， 单位为秒
     }
@@ -188,31 +186,33 @@ Page({
     /**
      * 所有的canvas动画帧
      */
-    
-    timeToAnimation.bind(this)(2, 5, coverLogo)
+    let ctx = wx.createCanvasContext('canvas')
+    ctx.clearRect(0, 0, this.data.videoWidth, this.data.videoHeight)
+    timeToAnimation.bind(this)(2, 5, coverLogo, ctx)
+    timeToAnimation.bind(this)(2, 5, drawText, ctx)
+    ctx.draw()
     /**
      * 时间映射动画
      * @params start 开始时间，单位秒
      * @params end 结束时间，单位秒
      * @params animation 时间内对应的动画
      */
-    function timeToAnimation(start, end, animation) {
+    function timeToAnimation(start, end, animation, ctx) {
       if (fps >= start * setting.fps && fps <= end * setting.fps) {
-        animation.bind(this)(fps - start * setting.fps, (end - start) * setting.fps)
+        animation.bind(this)(fps - start * setting.fps, (end - start) * setting.fps, ctx)
       }
     }
 
-    function coverLogo(currentFps, allFps) {
-      // console.log(currentFps, allFps)
+    function coverLogo(currentFps, allFps, ctx) {
       let x = this.data.videoWidth + 333 - currentFps * (this.data.videoHeight + 333) / allFps;
       
-      let ctx = wx.createCanvasContext('canvas')
-      ctx.clearRect(0, 0, this.data.videoWidth, this.data.videoHeight)
+      // let ctx = wx.createCanvasContext('canvas')
+      // ctx.clearRect(0, 0, this.data.videoWidth, this.data.videoHeight)
       ctx.beginPath();
-      ctx.fillStyle = setting.fillStyle;
-      ctx.strokeStyle = setting.strokeStyle;
+      ctx.fillStyle = "#fff"
+      ctx.strokeStyle = "#fff"
 
-      // // 绘制二次贝塞尔曲线
+      // 绘制二次贝塞尔曲线
       ctx.moveTo(x, 0)
       ctx.quadraticCurveTo(x - 400, this.data.videoHeight / 2, x, this.data.videoHeight);
       // // 绘制全屏
@@ -221,14 +221,19 @@ Page({
       ctx.stroke();
       ctx.closePath();
       ctx.fill();
-      // // // 绘制中行logo
+      // 绘制中行logo
       let textX = x + (this.data.screenWidth - 220) / 2 - 160;
       if (textX < 77.5) {
         ctx.drawImage(this.data.logoImg, 77.5, (this.data.screenHeight - 66) / 2);
       } else {
         ctx.drawImage(this.data.logoImg, textX, (this.data.screenHeight - 66) / 2);
       }
-      ctx.draw()
+    }
+
+    function drawText(currentFps, allFps, ctx) {
+      ctx.fillStyle = "#000";
+      ctx.setFontSize(20)
+      ctx.fillText('MINA', 200, 200)
     }
   }
 })
