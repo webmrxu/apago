@@ -228,10 +228,7 @@ Page({
       } else {
         ctx.drawImage(this.data.logoImg, textX, (this.data.screenHeight - 66) / 2);
       }
-      wx.drawCanvas({
-        canvasId: 'canvas',
-        actions: ctx.getActions()
-      })
+      ctx.draw()
     }
   }
 })
