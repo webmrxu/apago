@@ -14,8 +14,10 @@ Page({
     logoImg: 'https://www.apago.top/video/logos.png', // logo图片资源地址
     
     // 以下为动画状态
+    showTestButton: false,
+    showGold: false, // 展示金币
     showBalloon: false, // 展示气球
-    golds: [[100, 0, 100, true], [50, 0, 200, true], [30, 0, 300, true], [20, 0, 400, true], [10, 0, 500, true]], // x , y, time: 开始落下时间, isShow: true展示
+    golds: [[100, 100, false], [50, 300, false], [30, 600, false], [200, 200, false], [300, 100, false]], // x , time: 开始落下时间, isShow: true展示
 
     showText: false // 以下为页面状态
   },
@@ -34,8 +36,25 @@ Page({
      * 页面资源加载
      */
     this.downlodFile()
-
-    console.log(this)
+    /**
+     * 生成随机金币
+     */
+    this.generatorGolds()
+  },
+  generatorGolds: function() {
+    // console.log(this.data.golds)
+    let goldsNumber = 10 // 生成金币数量
+    let golds = []
+    for (let i = 0; i < goldsNumber; i++) {
+      let randomX = Math.floor((Math.random() * this.data.screenWidth) + 1);
+      let randomTime = Math.floor((Math.random() * 1000) + 1);
+      // console.log(randomX, randomTime)
+      let goldItem = [randomX, randomTime, false]
+      golds.push(goldItem)
+    }
+    this.setData({
+      golds: golds
+    })
   },
   bindtimeupdate: function(event) {
     /**
@@ -91,7 +110,10 @@ Page({
     this.videoInit()
   },
   videoMappingAnimation_1000: function() {
-
+    
+    this.setData({
+      showTestButton: true
+    })
   },
   videoMappingAnimation_1100: function () {
     this.setData({
@@ -104,10 +126,14 @@ Page({
     })
   },
   videoMappingAnimation_5100: function () {
-    // this.setData({
-    //   showGold: true
-    // })
-    console.log(this.data.golds)
+    this.data.golds.forEach((v, index)=>{
+      setTimeout(()=>{
+        let vKey = 'golds['+ index +'][2]'
+        this.setData({
+          [vKey]: true
+        })
+      }, v[1])
+    })
   },
   videoMappingAnimation_6000: function () {
 

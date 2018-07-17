@@ -48,7 +48,8 @@
   padding: 8px;
   border-radius: 10px;
   color: #fff;
-  transition: 0.5s ease all;
+  left: -100px;
+  transition: 2s;
 }
 .center-button-hiden{
   left: -100px;
@@ -56,6 +57,7 @@
 .center-button-show{
   left: 20px;
 }
+
 
 
 /**
@@ -86,32 +88,38 @@
   box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.03);
 }
 
-.gold-item{
-  width: 32px;
-  margin-top: 100px;
-  display: none;
-  transition: 4s ease all;
-  float: left;
-}
-.gold-show{
-  display: block;
-  margin-top: 700px;
-}
-.gold-img{
-  width: 100%;
-}
-
-
-.balloon-item{
-  width: 134px; 
-  margin-top: -183px;
-  transition: 2s ease all;
+/* 视频叠加元素 */
+.balloon-img{
+  width: 134px;
+  height: 182.5px;
+  position: fixed;
+  top: -10px;
+  transition: 5s ease all;
+  z-index: 100;
 }
 .balloon-show{
-  margin-top: 100px;
-  width: 134px;
+  top: 200px;
 }
-.balloon-img{
-  width: 100%;
+
+.gold-img{
+  width: 16px;
+  height: 12.5px;
+  position: fixed;
+  top: -150px;
+  transition: 2s ease all;
+  z-index: 100;
+}
+.gold-show{
+  top: 700px;
+}
+
+
+.tip-animation{
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 

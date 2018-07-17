@@ -26,19 +26,19 @@
         <cover-view class="clolor {{showText?'show':'hide'}}">活动介绍详情活动介绍详情活动介绍详情</cover-view>
       </cover-view>
 
-      <!-- 金币 -->
-       <!-- <cover-view class="gold-ele">
-        <cover-view wx:for="{{golds}}" style="margin-left: {{item[0]}}px" class="gold-item {{item[3]?'gold-show':'gold-hide'}}">
-          <cover-image class='gold-img' src="https://www.apago.top/examples/gold/gold-s.png"></cover-image>
-        </cover-view >
-      </cover-view>  -->
-
+  
       <!-- 气球 -->
-      <cover-view class="balloon">
-        <cover-view class="balloon-item {{showBalloon?'balloon-show':'balloon-hide'}}">
-          <cover-image class='balloon-img' src="https://www.apago.top/examples/ball/balloon.png"></cover-image>
-        </cover-view >
-      </cover-view>
+         <cover-view class='tip-animation'>
+          <cover-image class="balloon-img {{showBalloon?'balloon-show':'balloon-hide'}}" src="https://www.apago.top/examples/ball/balloon.png"></cover-image>
+
+          <cover-image wx:for="{{golds}}" style="left:{{item[0]}}px" class="gold-img {{item[2]?'gold-show':'gold-hide'}}" src="https://www.apago.top/examples/gold/gold-s.png"></cover-image>
+          
+        </cover-view > 
+
+         <cover-view class="center-button  {{showTestButton?'center-button-show':'center-button-hiden'}}">
+          点我点我
+        </cover-view> 
+        
     </canvas>
   </view>
 </view>
