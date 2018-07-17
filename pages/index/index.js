@@ -12,8 +12,10 @@ Page({
     videoContext: {},
     currentTime: 0, // 当前视频播放的进度
     logoImg: 'https://www.apago.top/video/logos.png', // logo图片资源地址
-
-    showTestButton: false, // 以下为动画状态
+    
+    // 以下为动画状态
+    showBalloon: false, // 展示气球
+    golds: [[100, 0, 100, true], [50, 0, 200, true], [30, 0, 300, true], [20, 0, 400, true], [10, 0, 500, true]], // x , y, time: 开始落下时间, isShow: true展示
 
     showText: false // 以下为页面状态
   },
@@ -54,18 +56,11 @@ Page({
     let gapTimes = (currentTime - this.data.currentTime) / 100;
     for (let i = 0; i < gapTimes; i++) {
       let keyAnimation = 'videoMappingAnimation_' + (this.data.currentTime + i * 100)
-      // console.log(keyAnimation)
       if (this[keyAnimation]) {
         let ani = this[keyAnimation]
         ani()
       }
     }
-  },
-  doTestAction: function() {
-    console.log('我知道了')
-    this.setData({
-      showText: true
-    })
   },
   videoInit: function() {
     /**
@@ -96,39 +91,26 @@ Page({
     this.videoInit()
   },
   videoMappingAnimation_1000: function() {
+
+  },
+  videoMappingAnimation_1100: function () {
     this.setData({
-      showTestButton: true
+      showBalloon: true
     })
+  },
+  videoMappingAnimation_4100: function () {
+    this.setData({
+      showBalloon: false
+    })
+  },
+  videoMappingAnimation_5100: function () {
+    // this.setData({
+    //   showGold: true
+    // })
+    console.log(this.data.golds)
   },
   videoMappingAnimation_6000: function () {
-    this.setData({
-      showTestButton: false
-    })
-  },
-  videoMappingAnimation_400: function() {
-    let ctxSetting = {
-      lineWidth: 5,
-      centerX: this.data.videoWidth / 2,
-      centerY: this.data.videoHeight / 2,
-      fps: 24, // 动画帧数
-      animationTime: 18 //视频的时长， 单位为秒
-    }
-    
-    // console.log(ctxSetting)
-    let allTimes = ctxSetting.fps * ctxSetting.animationTime; //  定时器总执行次数
-    let times = 0; // 当前定时器执行次数
-    let timer = setInterval(() => {
-      times = times + 1
-      // console.log(times)
-      // 映射帧动画
-      this.fpsMappingAnimation(ctxSetting, times)
-      
-      if (times == allTimes) {
-        console.log('结束定时器')
-        clearInterval(timer);
-      }
-    }, 1000 / ctxSetting.fps)
-    let me = this
+
   },
   initPage: function() {
     /**
@@ -182,14 +164,41 @@ Page({
      * 如果视频循环播放，只会在第一次循环时触发事件
      */
   },
+  videoMappingAnimation_400: function () {
+    let ctxSetting = {
+      lineWidth: 5,
+      centerX: this.data.videoWidth / 2,
+      centerY: this.data.videoHeight / 2,
+      fps: 24, // 动画帧数
+      animationTime: 18 //视频的时长对应动画的时长， 单位为秒
+    }
+    // console.log(ctxSetting)
+    let allTimes = ctxSetting.fps * ctxSetting.animationTime; //  定时器总执行次数
+    let times = 0; // 当前定时器执行次数
+    let timer = setInterval(() => {
+      times = times + 1
+      // 映射帧动画
+      this.fpsMappingAnimation(ctxSetting, times)
+
+      if (times == allTimes) {
+        console.log('结束定时器')
+        clearInterval(timer);
+      }
+    }, 1000 / ctxSetting.fps)
+    let me = this
+  },
   fpsMappingAnimation: function(setting, fps) {
     /**
      * 所有的canvas动画帧
      */
     let ctx = wx.createCanvasContext('canvas')
     ctx.clearRect(0, 0, this.data.videoWidth, this.data.videoHeight)
-    timeToAnimation.bind(this)(2, 5, coverLogo, ctx)
-    timeToAnimation.bind(this)(2, 5, drawText, ctx)
+    /**
+     * 配置所有动画
+     */
+    timeToAnimation.bind(this)(8, 10, coverLogo, ctx)
+    // timeToAnimation.bind(this)(6, 10, drawText, ctx)
+    // timeToAnimation.bind(this)(1, 17, drawCircle, ctx)
     ctx.draw()
     /**
      * 时间映射动画
@@ -205,13 +214,9 @@ Page({
 
     function coverLogo(currentFps, allFps, ctx) {
       let x = this.data.videoWidth + 333 - currentFps * (this.data.videoHeight + 333) / allFps;
-      
-      // let ctx = wx.createCanvasContext('canvas')
-      // ctx.clearRect(0, 0, this.data.videoWidth, this.data.videoHeight)
       ctx.beginPath();
-      ctx.fillStyle = "#fff"
-      ctx.strokeStyle = "#fff"
-
+      ctx.fillStyle = '#fff'
+      ctx.strokeStyle = '#fff'
       // 绘制二次贝塞尔曲线
       ctx.moveTo(x, 0)
       ctx.quadraticCurveTo(x - 400, this.data.videoHeight / 2, x, this.data.videoHeight);
@@ -231,9 +236,14 @@ Page({
     }
 
     function drawText(currentFps, allFps, ctx) {
-      ctx.fillStyle = "#000";
+      ctx.fillStyle = '#f46a64';
       ctx.setFontSize(20)
-      ctx.fillText('MINA', 200, 200)
+      ctx.fillText('hello world', setting.centerX, setting.centerY - 100)
+    }
+
+
+    function drawCircle(currentFps, allFps, ctx) {
+     
     }
   }
 })

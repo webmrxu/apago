@@ -4,24 +4,14 @@
       src="https://www.apago.top/video/awesome.mp4" 
       class="video__content"  
       id="video"
-      loop="loop"
       autoplay="autoplay"
       bindtimeupdate="bindtimeupdate"
       bindplay="videoBindplay"
       bindended="videoBindended"
       binderror="videoBinderror"
       >
-      
   </video>
 </view>    
-
-<!-- <view class="btn-area">
-  <view class="body-view">
-    <text>hello world</text>
-    <button bindtap="add">add line</button>
-    <button bindtap="remove">remove line</button>
-  </view>
-</view> -->
 
 <view class="page-body">
   <view class="page-body-wrapper">
@@ -36,8 +26,18 @@
         <cover-view class="clolor {{showText?'show':'hide'}}">活动介绍详情活动介绍详情活动介绍详情</cover-view>
       </cover-view>
 
-      <cover-view class="center-button {{showTestButton?'center-button-show':'center-button-hiden'}} ">
-        <cover-view bindtap="doTestAction">点我点我</cover-view>
+      <!-- 金币 -->
+       <!-- <cover-view class="gold-ele">
+        <cover-view wx:for="{{golds}}" style="margin-left: {{item[0]}}px" class="gold-item {{item[3]?'gold-show':'gold-hide'}}">
+          <cover-image class='gold-img' src="https://www.apago.top/examples/gold/gold-s.png"></cover-image>
+        </cover-view >
+      </cover-view>  -->
+
+      <!-- 气球 -->
+      <cover-view class="balloon">
+        <cover-view class="balloon-item {{showBalloon?'balloon-show':'balloon-hide'}}">
+          <cover-image class='balloon-img' src="https://www.apago.top/examples/ball/balloon.png"></cover-image>
+        </cover-view >
       </cover-view>
     </canvas>
   </view>
