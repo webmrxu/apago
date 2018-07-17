@@ -12,12 +12,14 @@ Page({
     videoContext: {},
     currentTime: 0, // 当前视频播放的进度
     logoImg: 'https://www.apago.top/video/logos.png', // logo图片资源地址
+    balloonImg: 'https://www.apago.top/examples/ball/balloon.png', 
+    goldImg: 'https://www.apago.top/examples/gold/gold-s.png',
     
     // 以下为动画状态
     showTestButton: false,
     showGold: false, // 展示金币
     showBalloon: false, // 展示气球
-    golds: [[100, 100, false], [50, 300, false], [30, 600, false], [200, 200, false], [300, 100, false]], // x , time: 开始落下时间, isShow: true展示
+    golds: [[100, 100, false]], // x , time: 开始落下时间, isShow: true展示
 
     showText: false // 以下为页面状态
   },
@@ -43,11 +45,11 @@ Page({
   },
   generatorGolds: function() {
     // console.log(this.data.golds)
-    let goldsNumber = 10 // 生成金币数量
+    let goldsNumber = 50 // 生成金币数量
     let golds = []
     for (let i = 0; i < goldsNumber; i++) {
       let randomX = Math.floor((Math.random() * this.data.screenWidth) + 1);
-      let randomTime = Math.floor((Math.random() * 1000) + 1);
+      let randomTime = Math.floor((Math.random() * 24) + 1);
       // console.log(randomX, randomTime)
       let goldItem = [randomX, randomTime, false]
       golds.push(goldItem)
@@ -109,35 +111,6 @@ Page({
      */
     this.videoInit()
   },
-  videoMappingAnimation_1000: function() {
-    
-    this.setData({
-      showTestButton: true
-    })
-  },
-  videoMappingAnimation_1100: function () {
-    this.setData({
-      showBalloon: true
-    })
-  },
-  videoMappingAnimation_4100: function () {
-    this.setData({
-      showBalloon: false
-    })
-  },
-  videoMappingAnimation_5100: function () {
-    this.data.golds.forEach((v, index)=>{
-      setTimeout(()=>{
-        let vKey = 'golds['+ index +'][2]'
-        this.setData({
-          [vKey]: true
-        })
-      }, v[1])
-    })
-  },
-  videoMappingAnimation_6000: function () {
-
-  },
   initPage: function() {
     /**
      * 获取视频组件上下文
@@ -168,6 +141,9 @@ Page({
         videoHeight: res[0].height
       })
     })
+    // let ctx = wx.createCanvasContext('canvas')
+    // ctx.drawImage(this.data.balloonImg, 0, 0, this.data.balloonImg.width, this.data.balloonImg.height, 0, 0, 134.5, 182.5)
+    // ctx.draw()
   },
   downlodFile: function() {
     let me = this
@@ -179,6 +155,26 @@ Page({
         }
       },
       fail: () => {console.log('logo 图片加载失败')}
+    })
+
+    wx.downloadFile({
+      url: me.data.balloonImg,
+      success: function (res) {
+        if (res.statusCode === 200) {
+          me.data.balloonImg = res.tempFilePath
+        }
+      },
+      fail: () => { console.log('balloon 图片加载失败') }
+    })
+
+    wx.downloadFile({
+      url: me.data.goldImg,
+      success: function (res) {
+        if (res.statusCode === 200) {
+          me.data.goldImg = res.tempFilePath
+        }
+      },
+      fail: () => { console.log('balloon 图片加载失败') }
     })
   },
   videoPlay: function() {
@@ -222,9 +218,10 @@ Page({
     /**
      * 配置所有动画
      */
-    timeToAnimation.bind(this)(8, 10, coverLogo, ctx)
-    // timeToAnimation.bind(this)(6, 10, drawText, ctx)
-    // timeToAnimation.bind(this)(1, 17, drawCircle, ctx)
+    timeToAnimation.bind(this)(10, 12, coverLogo, ctx)
+    timeToAnimation.bind(this)(2, 8, drawBalloon, ctx)
+    timeToAnimation.bind(this)(6, 10, drawGold, ctx)
+
     ctx.draw()
     /**
      * 时间映射动画
@@ -261,15 +258,43 @@ Page({
       }
     }
 
-    function drawText(currentFps, allFps, ctx) {
-      ctx.fillStyle = '#f46a64';
-      ctx.setFontSize(20)
-      ctx.fillText('hello world', setting.centerX, setting.centerY - 100)
+    function drawGold(currentFps, allFps, ctx){
+      // console.log(currentFps)
+      this.data.golds.forEach((v, i) => {
+        // [x , time , false]
+        console.log(v[1])
+        let drawTime = 2 // 下落时间：单位秒
+        let top
+        if (currentFps > v[1] && currentFps < drawTime * setting.fps+v[1]){
+          top = this.easeIn(currentFps-v[1], 0, this.data.videoHeight, drawTime * setting.fps)
+          console.log(top)
+        }
+
+        if (currentFps > drawTime * setting.fps + v[1]){
+          top = this.easeIn(drawTime * setting.fps, 0, this.data.videoHeight, drawTime * setting.fps)
+        }
+        ctx.drawImage(this.data.goldImg, 0, 0, this.data.goldImg.width, this.data.goldImg.height, v[0], top, 16, 12.5)
+      })
+      
+
+      
+      
+
     }
 
-
-    function drawCircle(currentFps, allFps, ctx) {
-     
+    function drawBalloon(currentFps, allFps, ctx){
+      let drawTime = 2 // 下落时间：单位秒
+      let top
+      if (currentFps < drawTime * setting.fps){
+        top = this.easeIn(currentFps, 0, 200, drawTime * setting.fps)
+        
+      } else {
+        top = this.easeIn(drawTime * setting.fps, 0, 200, drawTime * setting.fps)
+      }
+      ctx.drawImage(this.data.balloonImg, 0, 0, this.data.balloonImg.width, this.data.balloonImg.height, 0, top, 134.5, 182.5)
     }
+  },
+  easeIn: function (t, b, c, d) {
+    return c * (t /= d) * t + b;
   }
 })
