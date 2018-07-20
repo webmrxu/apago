@@ -2,16 +2,17 @@
 /* width: 750rpx;
   height: 1334rpx; 
   #f46a64*/
-.video__window{
+/* .video__window{
   width: 100%;
-}
+} */
 .video__content{
   z-index: 1;
   margin: 0;
-  width: 100%;
+  width: 750rpx;
   padding: 0;
   object-fit: fill;
   transition: 0.23s ease all;
+  float: left;
 }
 
 .canvas {
@@ -20,16 +21,26 @@
   top: 0;
 }
 
-.acive-info{
-  width: 100%;
-}
-
 .info-item{
   float: left;
   width: 33.32%
 }
 
-.info-content{
-  margin: 0 8px;
-  height: 90px;
+.voice{
+  width: 100%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  padding: 2px 0;
+}
+.voice-button{
+  width: 20%;
+  padding: 10px 0;
+  text-align: center;
+}
+.voice-input{
+  width: 60%;
+}
+.voice-send{
+  width: 20%;
 }
