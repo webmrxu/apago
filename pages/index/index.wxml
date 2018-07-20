@@ -1,6 +1,6 @@
 <!-- loop="loop" 循环 autoplay="autoplay" 自动播放 bindtimeupdate: 播放中获取播放进度 bindtap="onTap":点击-->
 <view class="video__window">
-  <video src="https://www.apago.top/examples/imgs/lsl-2.mp4" style="height:{{videoHeight}}px" class="video__content" autoplay="autoplay"  id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
+  <video src="https://www.apago.top/examples/imgs/lsl-3.mp4" style="height:{{videoHeight}}px" class="video__content" autoplay="autoplay"  id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
   </video>
 </view>
 
@@ -11,20 +11,23 @@
 <view>
   <image wx:if="{{videoHeight == 100}}" src="https://www.apago.top/examples/imgs/76.gif"></image>
 </view>
-<view class="info border">
-  <view class="info-item">
-    <view class="info-content border radius" bindtap="onInfoOne">one</view>
+
+<view class="info " style="height:{{windowHeight-videoHeight-50 > 153? 153: windowHeight-videoHeight-50}}px">
+  <view class="info-item" >
+    <view class="info-content  radius" bindtap="onInfoOne" >one</view>
   </view>
   <view class="info-item">
-    <view class="info-content border radius" bindtap="onInfoTwo">two</view>
+    <view class="info-content  radius" bindtap="onInfoTwo">two</view>
   </view>
   <view class="info-item">
-    <view class="info-content border radius">three</view>
+    <view class="info-content  radius">three</view>
   </view>
 </view>
 
-<view class="voice border-t">
-  <view class="voice-button border" bindlongtap="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord">语音</view>
-  <view class="voice-input">输入</view>
+<view class="voice ">
+  <view class="voice-button " bindlongtap="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord">语音</view>
+  <view class="voice-input">
+     <input class="" />
+  </view>
   <view class="voice-send">发送</view>
 </view>

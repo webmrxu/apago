@@ -1,15 +1,9 @@
-/**index.wxss**/
-/* width: 750rpx;
-  height: 1334rpx; 
+/* 
   #f46a64*/
-/* .video__window{
-  width: 100%;
-} */
+
 .video__content{
   z-index: 1;
-  margin: 0;
   width: 750rpx;
-  padding: 0;
   object-fit: fill;
   transition: 0.23s ease all;
   float: left;
@@ -21,21 +15,14 @@
   top: 0;
 }
 
-.info-item{
-  float: left;
-  width: 33.32%
-}
-
 .voice{
   width: 100%;
   display: flex;
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
-  padding: 2px 0;
 }
 .voice-button{
   width: 20%;
-  padding: 10px 0;
   text-align: center;
 }
 .voice-input{
@@ -43,4 +30,22 @@
 }
 .voice-send{
   width: 20%;
+  line-height: 50px;
+  text-align: center;
+}
+.info{
+  float: left;
+  width: 100%;
+}
+.info-item{
+  float: left;
+  width: 33.32%;
+  height: 100%;
+  text-align: center;
+}
+.info-content{
+  height: 100%;
+}
+.voice-input>input{
+  height: 50px;
 }

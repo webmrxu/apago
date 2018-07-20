@@ -103,7 +103,6 @@ Page({
   downlodFile: function() {
     // this.downloadImg(this.data.logoImg)
     // this.downloadImg(this.data.gif76)
-    
   },
   play: function() {
     this.videoContext.play()
@@ -157,9 +156,9 @@ Page({
     }
   },
   onInfoTwo: function(){
-    this.setData({
-      videoHeight: 374
-    })
+    // this.setData({
+    //   videoHeight: 374
+    // })
   },
   startRecord: function () {
     var $this = this
