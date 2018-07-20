@@ -1,6 +1,6 @@
 <!-- loop="loop" 循环 autoplay="autoplay" 自动播放 bindtimeupdate: 播放中获取播放进度 bindtap="onTap":点击-->
 <view class="video__window">
-  <video src="https://www.apago.top/examples/imgs/video-6.mp4" style="height:{{videoHeight}}px" class="video__content" loop="loop"  id="video" autoplay="autoplay" objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindended="videoBindended" binderror="videoBinderror">
+  <video src="https://www.apago.top/examples/imgs/video-6.mp4" style="height:{{videoHeight}}px" class="video__content" autoplay="autoplay"  id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
   </video>
 </view>
 
@@ -8,6 +8,9 @@
     <canvas canvas-id="canvas" style='height:{{videoHeight}}px;width:{{videoWidth}}px' class="canvas"></canvas>
 </view>
 
+<view>
+  <image wx:if="{{videoHeight == 100}}" src="https://www.apago.top/examples/imgs/76.gif"></image>
+</view>
 <view class="acive-info">
   <view class="info-item">
     <view class="info-content border radius" bindtap="onInfoOne">one</view>
@@ -18,7 +21,4 @@
   <view class="info-item">
     <view class="info-content border radius">three</view>
   </view>
-</view>
-<view>
-  <image wx:if="{{videoHeight == 100}}" src="https://www.apago.top/examples/imgs/76.gif"></image>
 </view>

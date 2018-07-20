@@ -9,6 +9,7 @@ Page({
     windowHeight: 0, // 屏幕高度
     videoHeight: 374, // video 元素高度，对应canvas元素高度
     hiddenCanvas: true,
+    isPlay: false, // 视频是否播放中
     ctx: {},
     videoContext: {},
     currentTime: 0, // 当前视频播放的进度
@@ -17,13 +18,6 @@ Page({
       'https://www.apago.top/examples/imgs/76-02.jpg',
       'https://www.apago.top/examples/imgs/76-03.jpg',
       'https://www.apago.top/examples/imgs/76-04.jpg'],
-    
-    // 以下为动画状态
-    showTestButton: false,
-    showGold: false, // 展示金币
-    showBalloon: false, // 展示气球
-    golds: [[100, 100, false]], // x , time: 开始落下时间, isShow: true展示
-
   },
   canvasIdErrorCallback: function (e) {
     console.error('canvas画布启动失败：' + e.detail.errMsg)
@@ -69,10 +63,10 @@ Page({
     /**
      * 获取视频组件上下文
      */
-    // this.videoContext = wx.createVideoContext('video')
-    // this.setData({
-    //   videoContext: wx.createVideoContext('video')
-    // })
+    this.videoContext = wx.createVideoContext('video')
+    this.setData({
+      videoContext: wx.createVideoContext('video')
+    })
     
     /**
      * 获取视频元素的宽度和高度
@@ -117,29 +111,56 @@ Page({
     // this.downloadImg(this.data.gif76)
     
   },
-  videoPlay: function() {
+  play: function() {
     this.videoContext.play()
+    this.setData({
+      isPlay: true
+    })
+  },
+  pause: function() {
+    this.videoContext.pause()
+    this.setData({
+      isPlay: false
+    })
+  },
+  isPlay: function() {
+    return this.data.isPlay
   },
   videoBindplay: function() {
     /**
      * 视频开始播放时触发
      * 如果视频循环播放，只会在第一次循环时触发事件
      */
+    this.setData({
+      isPlay: true
+    })
+  },
+  videoBindPause: function() {
+    /**
+     * 视频暂停时触发
+     */
+    this.setData({
+      isPlay: false
+    })
   },
   easeIn: function (t, b, c, d) {
     return c * (t /= d) * t + b;
   },
   onInfoOne: function(){
-    if (this.data.videoHeight == 374){
-      this.setData({
-        videoHeight: 100
-      })
+    // if (this.data.videoHeight == 374){
+    //   this.setData({
+    //     videoHeight: 100
+    //   })
+    // } else {
+    //   this.setData({
+    //     videoHeight: 374
+    //   })
+    // }
+    if (this.isPlay()){
+      this.pause()
     } else {
-      this.setData({
-        videoHeight: 374
-      })
+      this.play()
     }
-    
   },
   onInfoTwo: function(){
     this.setData({
