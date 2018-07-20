@@ -2,124 +2,34 @@
 /* width: 750rpx;
   height: 1334rpx; 
   #f46a64*/
+.video__window{
+  width: 100%;
+}
 .video__content{
-  text-align: center;
-  width: 750rpx;
-  height: 1334rpx;
-  z-index: 100;
-  position: fixed;
+  z-index: 1;
+  margin: 0;
+  width: 100%;
+  padding: 0;
   object-fit: fill;
+  transition: 0.23s ease all;
 }
 
-.video-header{
-  width: 100%;
-  background: #fff;
-  font-size: 12px;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  padding: 20px 0;
-  text-align: center;
-}
-.video-footer{
-  width: 100%;
-  background: #fff;
-  font-size: 12px;
-  position: fixed;
-  bottom: 0;
-  z-index: 1000;
-  padding: 16px 0;
-  text-align: center;
-  height: 200px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.03);
-}
-
-/* test */
 .canvas {
   position: fixed;
   z-index: 110;
-}
-.center-button{
-  position: fixed;
-  z-index: 1000;
-  top: 150px;
-  background: rgba(0, 0, 0, 0.3);
-  font-size: 12px;
-  padding: 8px;
-  border-radius: 10px;
-  color: #fff;
-  left: -100px;
-  transition: 2s;
-}
-.center-button-hiden{
-  left: -100px;
-}
-.center-button-show{
-  left: 20px;
-}
-
-
-
-/**
-* 一下可编写公共样式
-**/
-.clolor{
-  color: #f46a64;
-}
-.show{
-  display: inherit;
-}
-.hide{
-  display: none;
-}
-.shadow{
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.03);
-}
-.shadow-t{
-  box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.03);
-}
-.shadow-b{
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.03);
-}
-.shadow-l{
-  box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.03);
-}
-.shadow-r{
-  box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.03);
-}
-
-/* 视频叠加元素 */
-.balloon-img{
-  width: 134px;
-  height: 182.5px;
-  position: fixed;
-  top: -10px;
-  transition: 5s ease all;
-  z-index: 100;
-}
-.balloon-show{
-  top: 200px;
-}
-
-.gold-img{
-  width: 16px;
-  height: 12.5px;
-  position: fixed;
-  top: -150px;
-  transition: 2s ease all;
-  z-index: 100;
-}
-.gold-show{
-  top: 700px;
-}
-
-
-.tip-animation{
-  position: fixed;
-  z-index: 100;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 
+.acive-info{
+  width: 100%;
+}
+
+.info-item{
+  float: left;
+  width: 33.32%
+}
+
+.info-content{
+  margin: 0 8px;
+  height: 90px;
+}
