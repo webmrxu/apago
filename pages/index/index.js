@@ -4,6 +4,7 @@ const app = getApp()
 var whisper = require('../../vendor/index');
 var config = require('../../config');
 var recorderSrc = '';
+var hostUrl = "https://anydata.22332008.com/info.php";
 Page({
   data: {
     fps: 24, // 动画帧
@@ -13,7 +14,8 @@ Page({
     hiddenCanvas: true,
     voiceHeight: 50,
     isRecording: false,
-    recorderSrc: "",
+    recorderSrc: "", // 语音文件
+    inputValue: "", // 输入值
     recorderResponseMsg: [],
     isPlay: false, // 视频是否播放中
     ctx: {},
@@ -233,7 +235,7 @@ Page({
     });
 
     wx.uploadFile({
-      url: "https://anydata.22332008.com/info.php",
+      url: hostUrl,
       filePath: src,
       name: "whisper",
       formData: {
@@ -243,7 +245,7 @@ Page({
         wx.hideToast()
         let data = JSON.parse(response.data);
         if (data.code == '0') {
-          console.log('翻译成功：'+response.data)
+          // console.log('翻译成功：'+response.data)
           let chatObj = {
             right: data.translate,
             left: data.message,
@@ -260,9 +262,49 @@ Page({
         recorderSrc = false
         console.log("获取录音文件失败")
       }
-    })
+    })     
+  },
+  sendTextMessage() {
+    // console.log(this.data.inputValue)
+    let $this = this
+    if (!this.data.inputValue) {
 
-    
+      return;
+    }
+    wx.showLoading({
+      title: '加载中'
+    })
+    wx.request({
+      url: hostUrl,
+      data:{
+        action: 'sendText',
+        content: this.data.inputValue,
+      },
+      success: (response) => {
+        console.log(response)
+        let data = response.data
+        let chatObj = {
+          right: $this.data.inputValue,
+          left: data.message,
+          _time: new Date()
+        }
+        $this.data.recorderResponseMsg.push(chatObj)
+        $this.setData({
+          recorderResponseMsg: $this.data.recorderResponseMsg
+        })
+      },
+      fail: (error) => {
+        console.log('输入文字聊天失败')
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
       
+    })
+  },
+  bindKeyInput(e) {
+    this.setData({
+      inputValue: e.detail.value
+    })
   }
 })

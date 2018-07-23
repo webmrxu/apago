@@ -1,6 +1,6 @@
 <!-- loop="loop" 循环 autoplay="autoplay" 自动播放 bindtimeupdate: 播放中获取播放进度 bindtap="onTap":点击-->
-  <view class="video__window clearfix">
-  <video src="https://anydata.22332008.com/mini/examples/imgs/lsl-4.mp4" style="height:{{videoHeight}}px" class="video__content" autoplay="autoplay"  id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
+<view class="video__window clearfix">
+  <video src="https://anydata.22332008.com/mini/examples/imgs/lsl-5.mp4" style="height:{{videoHeight}}px" class="video__content" autoplay="autoplay"  id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
   </video>
 </view>  
 
@@ -12,13 +12,13 @@
       
     </view>
   </view>
-  <view class="voice" >
+  <view class="voice border">
     <view class="voice-button " bindlongpress="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord">语音</view>
     <view class="voice-input">
-      <input class="" />
+      <input class="border-b" maxlength="-1" cursor-spacing="10" confirm-hold="true" bindconfirm="sendTextMessage" confirm-type="send" bindinput="bindKeyInput"/>
     </view>
     <view class="voice-send ">
-      <view class="send-button bgcolor">发送</view>
+      <view class="send-button bgcolor" bindtap="sendTextMessage">发送</view>
     </view>
   </view>
 </view>
