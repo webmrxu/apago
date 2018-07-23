@@ -18,9 +18,9 @@
 .voice{
   width: 100%;
   display: flex;
-  /* position: fixed; */
-  bottom: 0;
   height: 50px;
+  position: absolute;
+  bottom: 0;
 }
 .voice-button{
   width: 20%;
@@ -52,4 +52,7 @@
   padding: 6px 8px;
   border-radius: 4px;
   margin-top: 10px;
+}
+.footer{
+  position: relative;
 }

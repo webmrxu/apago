@@ -13,7 +13,8 @@ Page({
     hiddenCanvas: true,
     voiceHeight: 50,
     isRecording: false,
-    recorderSrc: "fa",
+    recorderSrc: "",
+    recorderResponseMsg: [],
     isPlay: false, // 视频是否播放中
     ctx: {},
     videoContext: {},
@@ -162,6 +163,7 @@ Page({
     // })
   },
   startRecord: function () {
+    console.log('start')
     /**
      * 开始录音
      */
@@ -175,14 +177,15 @@ Page({
     wx.startRecord({
       success: (res) => {
         if (res.tempFilePath) {
+          console.log(res.tempFilePath)
             recorderSrc = res.tempFilePath
             $this.setData({
               recorderSrc: res.tempFilePath,
             });
+            $this.saveVoice()
         } else {
           console.log("录音文件保存失败")
         }
-        // console.log(recorderSrc)
       },
       fail: () => {
         console.log('开始录音失败')
@@ -191,6 +194,7 @@ Page({
     
   },
   stopRecord: function () {
+    // console.log('stop')
     /**
      * 停止录音
      * 上传录音文件
@@ -201,18 +205,18 @@ Page({
     });
     wx.stopRecord({
       success: function (res) {
-        $this.saveVoice()
+        console.log(res);
       },
       fail: (error)=> {
         console.log('停止录音失败:', error);
       }
     });
   },
-  saveVoice: function (tag) {
+  saveVoice: function () {
     //上传
     let $this = this;
     let src = recorderSrc;
-    console.log(src)
+    console.log('录音文件地址是：'+src)
     if (!src) {
       wx.showToast({
         title: '没有听清',
@@ -236,15 +240,29 @@ Page({
         action: "sendVoice"
       },
       success: function(response) {
-        console.log(response)
-        recorderSrc = ""
+        wx.hideToast()
+        let data = JSON.parse(response.data);
+        if (data.code == '0') {
+          console.log('翻译成功：'+response.data)
+          let chatObj = {
+            right: data.translate,
+            left: data.message,
+            _time: new Date()
+          }
+          $this.data.recorderResponseMsg.push(chatObj)
+          $this.setData({
+            recorderResponseMsg: $this.data.recorderResponseMsg
+          })
+        }
+        recorderSrc = false
       },
       fail: function(error) {
+        recorderSrc = false
         console.log("获取录音文件失败")
       }
     })
 
-    wx.hideToast()
+    
       
   }
 })
