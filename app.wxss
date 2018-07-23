@@ -9,6 +9,10 @@ page{
 .clolor{
   color: #f46a64;
 }
+.bgcolor{
+  background-color:  #f46a64;
+  color: #fff;
+}
 .show{
   display: inherit;
 }
@@ -51,3 +55,11 @@ page{
 .border-b{
   border-bottom: 1px solid #eee;
 }
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
