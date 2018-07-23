@@ -3,7 +3,7 @@
 const app = getApp()
 var whisper = require('../../vendor/index');
 var config = require('../../config');
-
+var recorderSrc = '';
 Page({
   data: {
     fps: 24, // 动画帧
@@ -13,6 +13,7 @@ Page({
     hiddenCanvas: true,
     voiceHeight: 50,
     isRecording: false,
+    recorderSrc: "fa",
     isPlay: false, // 视频是否播放中
     ctx: {},
     videoContext: {},
@@ -56,7 +57,7 @@ Page({
      */
     wx.getSystemInfo({
       success: (system) => {
-        console.log(system)
+        // console.log(system)
         this.setData({
           windowWidth: system.windowWidth,
           windowHeight: system.windowHeight,
@@ -161,117 +162,89 @@ Page({
     // })
   },
   startRecord: function () {
+    /**
+     * 开始录音
+     */
     var $this = this
+    if (this.data.isRecording){
+      return false
+    }
     $this.setData({
       isRecording: true,
     });
-    whisper.startRecord({
-      success(result) {
-        $this.setData({
-          isRecording: false,
-        });
-        console.log('录音成功:', result);
+    wx.startRecord({
+      success: (res) => {
+        if (res.tempFilePath) {
+            recorderSrc = res.tempFilePath
+            $this.setData({
+              recorderSrc: res.tempFilePath,
+            });
+        } else {
+          console.log("录音文件保存失败")
+        }
+        // console.log(recorderSrc)
       },
-      fail(error) {
-        console.log('录音失败:', error);
-      },
-      process() {
-        var rec = wx.createAnimation({
-          duration: 1000,
-          timingFunction: 'ease',
-        }).opacity(1).step().opacity(0).step();
-        var content = wx.createAnimation({
-          duration: 1000,
-          timingFunction: 'ease',
-        }).opacity(0.4).step().opacity(1).step();
-
-        $this.setData({
-          duration: whisper.getRecordDuration(),
-          recAnimation: rec.export(),
-          contentAnimation: content.export(),
-        });
-      },
-      compelete() {
-
-      },
+      fail: () => {
+        console.log('开始录音失败')
+      }
     });
+    
   },
   stopRecord: function () {
+    /**
+     * 停止录音
+     * 上传录音文件
+     */
     var $this = this;
-    whisper.stopRecord({
-      success(result) {
-        console.log('SET TIMMER STOP:', result);
-        $this.setData({
-          isRecording: false,
-        });
-        console.log('停止录音:', result);
-        //隔500毫秒后上传录音
-        setTimeout(() => { $this.saveVoice('自动上传') }, 500);
+    $this.setData({
+      isRecording: false,
+    });
+    wx.stopRecord({
+      success: function (res) {
+        $this.saveVoice()
       },
-      fail(error) {
+      fail: (error)=> {
         console.log('停止录音失败:', error);
       }
     });
   },
   saveVoice: function (tag) {
-
     //上传
-    var $this = this;
-
-    var src = whisper.getRecordSrc();
+    let $this = this;
+    let src = recorderSrc;
+    console.log(src)
     if (!src) {
       wx.showToast({
         title: '没有听清',
         icon: 'loading',
         duration: 1000
       });
-      // return; 
+      return false; 
     }
+
     wx.showToast({
       title: '正在上传...',
       icon: 'loading',
       duration: 60000
     });
-    console.log(whisper.getSession)
-    return
-    whisper.uploadFile({
-      url: config.service.whisperUrl + '/session=' + whisper.getSession().session + '&tag=' + tag + '&duration=' + $this.data.duration,
+
+    wx.uploadFile({
+      url: "https://anydata.22332008.com/info.php",
       filePath: src,
-      name: 'whisper',
-      success: function (res) {
-        wx.hideToast();
+      name: "whisper",
+      formData: {
+        action: "sendVoice"
       },
-      fail: function (res) {
-        console.log(res)
-        wx.hideToast();
+      success: function(response) {
+        console.log(response)
+        recorderSrc = ""
       },
-      saved: function (res) {
-        console.log(res);
-
-        wx.showToast({
-          title: res.translate,
-          icon: 'info',
-          duration: 1000
-        });
-
-        var explode = $this.selectComponent("#explode");
-        var translate = res.pa;
-        var words = Array();
-
-        translate = translate.split(" ");
-        console.log(translate)
-        for (var i = 0; i < translate.length; i++) {
-          words[i] = { content: translate[i], id: i }
-        }
-        console.log(words)
-
-        explode.setData({
-          mainx: "",
-          content: words,
-          opacity: 1
-        });
-
+      fail: function(error) {
+        console.log("获取录音文件失败")
       }
-    });
+    })
+
+    wx.hideToast()
+      
   }
 })

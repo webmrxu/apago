@@ -20,6 +20,7 @@
   display: flex;
   /* position: fixed; */
   bottom: 0;
+  height: 50px;
 }
 .voice-button{
   width: 20%;
@@ -30,7 +31,6 @@
 }
 .voice-send{
   width: 20%;
-  line-height: 50px;
   text-align: center;
 }
 .info{
@@ -46,6 +46,10 @@
 .info-content{
   height: 100%;
 }
-.voice-input>input{
-  height: 50px;
+
+.send-button{
+  margin:0px 10px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  margin-top: 10px;
 }
