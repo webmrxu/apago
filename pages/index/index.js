@@ -16,6 +16,9 @@ Page({
     isRecording: false,
     recorderSrc: "", // 语音文件
     inputValue: "", // 输入值
+    voiceOrKeyboard: 'keyboard', // 'voice' 语音输入， 'keyboard' 键盘
+    voiceTitle: "按住 说话",
+    stopVoiceTitle: '松开 结束',
     toView: "",
     recorderResponseMsg: [
       {
@@ -318,14 +321,25 @@ Page({
       },
       complete: () => {
         wx.hideLoading()
-        
       }
-      
     })
   },
   bindKeyInput(e) {
     this.setData({
       inputValue: e.detail.value
     })
+  },
+  toggleVoiceOrKeyboard() {
+    // voiceOrKeyboard: 'voice'; // 'voice' 语音输入， 'keyboard' 键盘
+    if(this.data.voiceOrKeyboard === 'voice') {
+      this.setData({
+        voiceOrKeyboard: 'keyboard'
+      })
+    } else {
+      this.setData({
+        voiceOrKeyboard: 'voice'
+      })
+    }
+    
   }
 })
