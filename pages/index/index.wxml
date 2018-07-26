@@ -1,18 +1,35 @@
 <!-- loop="loop" 循环 autoplay="autoplay" 自动播放 bindtimeupdate: 播放中获取播放进度 bindtap="onTap":点击-->
-<view class="video__window clearfix">
-  <video src="https://anydata.22332008.com/mini/examples/imgs/lsl-5.mp4" style="height:{{videoHeight}}px" class="video__content" autoplay="autoplay"  id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
+
+<view class='top-bg bgcolor' style='height:{{bgTopHeight}}px'></view>
+
+<view class="video__window clearfix" >
+  <video style="height:{{686/1.6}}rpx" loop="loop" src="https://anydata.22332008.com/mini/examples/imgs/lsl3-7.mp4"  class="shadow-b video__content" autoplay="autoplay" id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
   </video>
 </view>  
+<view  style="height:{{686/1.6/2}}rpx"></view>
 
-<view class='footer' style='height:{{windowHeight-videoHeight}}px'>
-  <view>
-    <view wx:for="{{recorderResponseMsg}}" wx:key="_time">
-      <view>{{item.right}}</view>
-      <view>{{item.left}}</view>
-      
+<view class='footer' >
+  <scroll-view scroll-y='{{true}}' scroll-with-animation="true" scroll-into-view="{{toView}}"  style='height:{{screenHeight-bgTopHeight- 686/1.6/4 -50}}px' class='chat-scroll'>
+    <view id='scroll-content'>
+      <view wx:for="{{recorderResponseMsg}}" wx:key="_time" id="{{item._time}}">
+        <view class='clearfix chat-right'>
+          
+          <view class='chat-profile'>
+            <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
+          </view>
+          <view class='chat-content-right'>{{item.right}}</view>
+        </view >
+
+        <view class='clearfix chat-left'>
+          <view class='chat-profile'>
+            <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
+          </view>
+          <view class='chat-content-left'>{{item.left}}</view>
+        </view>
+      </view>
     </view>
-  </view>
-  <view class="voice border">
+  </scroll-view>
+  <view class="voice border-t">
     <view class="voice-button " bindlongpress="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord">语音</view>
     <view class="voice-input">
       <input class="border-b" maxlength="-1" cursor-spacing="10" confirm-hold="true" bindconfirm="sendTextMessage" confirm-type="send" bindinput="bindKeyInput"/>
@@ -23,6 +40,6 @@
   </view>
 </view>
 
- <view hidden = "{{hiddenCanvas}}">
-    <canvas canvas-id="canvas" style='height:{{videoHeight}}px;width:{{videoWidth}}px' class="canvas"></canvas>
-</view> 
+<!-- <view hidden = "{{hiddenCanvas}}">
+  <canvas canvas-id="canvas" style='height:{{videoHeight}}px;width:{{videoWidth}}px' class="canvas"></canvas>
+</view>  -->

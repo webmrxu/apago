@@ -10,13 +10,19 @@ Page({
     fps: 24, // 动画帧
     windowWidth: 0, // 屏幕宽度
     windowHeight: 0, // 屏幕高度
-    videoHeight: 374, // video 元素高度，对应canvas元素高度
-    hiddenCanvas: true,
-    voiceHeight: 50,
+    screenHeight: 0, 
+    bgTopHeight: 170,
+    videoHeight: 428.75, // video 元素高度，对应canvas元素高度
     isRecording: false,
     recorderSrc: "", // 语音文件
     inputValue: "", // 输入值
-    recorderResponseMsg: [],
+    toView: "",
+    recorderResponseMsg: [
+      {
+        right: 'helo hel helo heloh eloh elohelo oh helo helo elohel ohelohel ohelohelohelo',
+        left: 'world  heloh eloh elohelo oh helo helo  heloh eloh elohelo oh helo helo   heloh eloh elohelo oh helo helo '
+      }
+    ],
     isPlay: false, // 视频是否播放中
     ctx: {},
     videoContext: {},
@@ -60,12 +66,13 @@ Page({
      */
     wx.getSystemInfo({
       success: (system) => {
-        // console.log(system)
+        console.log(system)
         this.setData({
           windowWidth: system.windowWidth,
           windowHeight: system.windowHeight,
-          videoHeight: 400,
-          infoHeight: system.windowHeight - system.windowWidth * 400 / 375 - 50
+          screenHeight: system.screenHeight,
+          videoHeight: Math.floor(system.windowWidth / 374 * 300),
+          infoHeight: Math.floor(system.windowHeight - system.windowWidth / 374 * 300 - 50)
         })
       }
     })
@@ -76,6 +83,13 @@ Page({
     this.videoContext = wx.createVideoContext('video')
     this.setData({
       videoContext: wx.createVideoContext('video')
+    })
+
+    /**
+     * 设置导航条
+     */
+    wx.setNavigationBarTitle({
+      title: '中国银行深圳分行'
     })
     
   },
@@ -144,15 +158,6 @@ Page({
     return c * (t /= d) * t + b;
   },
   onInfoOne: function(){
-    // if (this.data.videoHeight == 374){
-    //   this.setData({
-    //     videoHeight: 100
-    //   })
-    // } else {
-    //   this.setData({
-    //     videoHeight: 374
-    //   })
-    // }
     if (this.isPlay()){
       this.pause()
     } else {
@@ -165,7 +170,6 @@ Page({
     // })
   },
   startRecord: function () {
-    console.log('start')
     /**
      * 开始录音
      */
@@ -245,15 +249,25 @@ Page({
         wx.hideToast()
         let data = JSON.parse(response.data);
         if (data.code == '0') {
-          // console.log('翻译成功：'+response.data)
+          if (!data.translate) {
+            wx.showToast({
+              title: '语音太短，或者声音太小',
+              icon: 'loading',
+              duration: 1000
+            });
+            return false
+          }
+          console.log('翻译成功：' + data.translate)
+          console.log('回复成功：' + data.message)
           let chatObj = {
             right: data.translate,
             left: data.message,
-            _time: new Date()
+            _time: 't-' + (new Date()).getTime()
           }
           $this.data.recorderResponseMsg.push(chatObj)
           $this.setData({
-            recorderResponseMsg: $this.data.recorderResponseMsg
+            recorderResponseMsg: $this.data.recorderResponseMsg,
+            toView: chatObj._time
           })
         }
         recorderSrc = false
@@ -268,7 +282,11 @@ Page({
     // console.log(this.data.inputValue)
     let $this = this
     if (!this.data.inputValue) {
-
+      wx.showToast({
+        title: '请先输入文字内容',
+        icon: 'none',
+        duration: 1000
+      });
       return;
     }
     wx.showLoading({
@@ -281,16 +299,18 @@ Page({
         content: this.data.inputValue,
       },
       success: (response) => {
-        console.log(response)
+        // console.log(response)
         let data = response.data
         let chatObj = {
           right: $this.data.inputValue,
           left: data.message,
-          _time: new Date()
+          _time: 't-' + (new Date()).getTime()
         }
+        // console.log(chatObj)
         $this.data.recorderResponseMsg.push(chatObj)
         $this.setData({
-          recorderResponseMsg: $this.data.recorderResponseMsg
+          recorderResponseMsg: $this.data.recorderResponseMsg,
+          toView: chatObj._time
         })
       },
       fail: (error) => {
@@ -298,6 +318,7 @@ Page({
       },
       complete: () => {
         wx.hideLoading()
+        
       }
       
     })

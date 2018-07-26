@@ -5,8 +5,9 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#FCFEFB",
+    "navigationBarTitleText": "中国银行深圳分行",
+    "navigationBarTextStyle":"black",
+    "navigationStyle": "custom"
   }
 }
