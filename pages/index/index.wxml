@@ -5,22 +5,25 @@
 <view class="video__window clearfix" >
   <video style="height:{{686/1.6}}rpx" loop="loop" src="https://anydata.22332008.com/mini/examples/imgs/lsl3-7.mp4"  class="shadow-b video__content" autoplay="autoplay" id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
   </video>
+  <view class='top-title-img'>
+    中行手机银行带你入驻特惠时空
+    <!-- <image style="width: 131rpx; height: 64rpx;"  src="https://anydata.22332008.com/mini/examples/imgs/top-title.png"></image> -->
+  </view>
 </view>  
 <view  style="height:{{686/1.6/2}}rpx"></view>
 
 <view class='footer' >
   <scroll-view scroll-y='{{true}}' scroll-with-animation="true" scroll-into-view="{{toView}}"  style='height:{{screenHeight-bgTopHeight- 686/1.6/4 -50}}px' class='chat-scroll'>
     <view id='scroll-content'>
-      <view wx:for="{{recorderResponseMsg}}" wx:key="_time" id="{{item._time}}">
-        <view class='clearfix chat-right'>
-          
+      <view wx:for="{{recorderResponseMsg}}" wx:key="_time" >
+        <view class='clearfix chat-right' wx:if="{{item.right}}" id="{{item._time}}">
           <view class='chat-profile'>
             <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
           </view>
           <view class='chat-content-right'>{{item.right}}</view>
         </view >
 
-        <view class='clearfix chat-left'>
+        <view class='clearfix chat-left' wx:if="{{item.left}}" id="{{item._time}}">
           <view class='chat-profile'>
             <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
           </view>

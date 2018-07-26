@@ -11,18 +11,20 @@ Page({
     windowWidth: 0, // 屏幕宽度
     windowHeight: 0, // 屏幕高度
     screenHeight: 0, 
-    bgTopHeight: 170,
+    bgTopHeight: 180,
     videoHeight: 428.75, // video 元素高度，对应canvas元素高度
     isRecording: false,
     recorderSrc: "", // 语音文件
     inputValue: "", // 输入值
-    voiceOrKeyboard: 'keyboard', // 'voice' 语音输入， 'keyboard' 键盘
+    voiceOrKeyboard: 'voice', // 'voice' 语音输入， 'keyboard' 键盘
     voiceTitle: "按住 说话",
     stopVoiceTitle: '松开 结束',
     toView: "",
     recorderResponseMsg: [
       {
-        right: 'helo hel helo heloh eloh elohelo oh helo helo elohel ohelohel ohelohelohelo',
+        right: 'helo hel helo heloh eloh elohelo oh helo helo elohel ohelohel ohelohelohelo'
+      },
+      {
         left: 'world  heloh eloh elohelo oh helo helo  heloh eloh elohelo oh helo helo   heloh eloh elohelo oh helo helo '
       }
     ],
@@ -254,7 +256,7 @@ Page({
         if (data.code == '0') {
           if (!data.translate) {
             wx.showToast({
-              title: '语音太短，或者声音太小',
+              title: '语音未识别',
               icon: 'loading',
               duration: 1000
             });
@@ -262,15 +264,23 @@ Page({
           }
           console.log('翻译成功：' + data.translate)
           console.log('回复成功：' + data.message)
-          let chatObj = {
+          let chatObjR = {
             right: data.translate,
-            left: data.message,
-            _time: 't-' + (new Date()).getTime()
+            _time: 'tr-' + (new Date()).getTime()
           }
-          $this.data.recorderResponseMsg.push(chatObj)
+          $this.data.recorderResponseMsg.push(chatObjR)
           $this.setData({
             recorderResponseMsg: $this.data.recorderResponseMsg,
-            toView: chatObj._time
+            toView: chatObjR._time
+          })
+          let chatObjL = {
+            left: data.message,
+            _time: 'tl-' + (new Date()).getTime()
+          }
+          $this.data.recorderResponseMsg.push(chatObjL)
+          $this.setData({
+            recorderResponseMsg: $this.data.recorderResponseMsg,
+            toView: chatObjL._time
           })
         }
         recorderSrc = false
@@ -292,6 +302,16 @@ Page({
       });
       return;
     }
+    let chatObjR = {
+      right: this.data.inputValue,
+      _time: 'tr-' + (new Date()).getTime()
+    }
+    $this.data.recorderResponseMsg.push(chatObjR)
+    $this.setData({
+      recorderResponseMsg: $this.data.recorderResponseMsg,
+      toView: chatObjR._time
+    })
+
     wx.showLoading({
       title: '加载中'
     })
@@ -304,16 +324,15 @@ Page({
       success: (response) => {
         // console.log(response)
         let data = response.data
-        let chatObj = {
-          right: $this.data.inputValue,
+        
+        let chatObjL = {
           left: data.message,
-          _time: 't-' + (new Date()).getTime()
+          _time: 'tl-' + (new Date()).getTime()
         }
-        // console.log(chatObj)
-        $this.data.recorderResponseMsg.push(chatObj)
+        $this.data.recorderResponseMsg.push(chatObjL)
         $this.setData({
           recorderResponseMsg: $this.data.recorderResponseMsg,
-          toView: chatObj._time
+          toView: chatObjL._time
         })
       },
       fail: (error) => {
