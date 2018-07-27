@@ -1,13 +1,13 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/teletext/teletext"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#FCFEFB",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f46a64",
     "navigationBarTitleText": "中国银行深圳分行",
-    "navigationBarTextStyle":"black",
-    "navigationStyle": "custom"
+    "navigationBarTextStyle": "#fff"
   }
 }

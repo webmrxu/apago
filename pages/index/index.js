@@ -11,8 +11,8 @@ Page({
     windowWidth: 0, // 屏幕宽度
     windowHeight: 0, // 屏幕高度
     screenHeight: 0, 
-    bgTopHeight: 180,
-    videoHeight: 428.75, // video 元素高度，对应canvas元素高度
+    bgTopHeight: 120,
+    videoHeight: 0, // video 元素高度，对应canvas元素高度
     isRecording: false,
     recorderSrc: "", // 语音文件
     inputValue: "", // 输入值
@@ -25,7 +25,12 @@ Page({
         right: 'helo hel helo heloh eloh elohelo oh helo helo elohel ohelohel ohelohelohelo'
       },
       {
-        left: 'world  heloh eloh elohelo oh helo helo  heloh eloh elohelo oh helo helo   heloh eloh elohelo oh helo helo '
+        left: true,
+        teletext: true,
+        title: '中国银行深圳分行',
+        img: 'https://anydata.22332008.com/mini/examples/imgs/top-title.png',
+        url: 'https://mp.weixin.qq.com/s/zYqXbQjdBG09bC4kXFvZiw',
+        des: '中国银行深圳分行充值大优惠，手机话费充值 7.5 折'
       }
     ],
     isPlay: false, // 视频是否播放中
@@ -75,9 +80,7 @@ Page({
         this.setData({
           windowWidth: system.windowWidth,
           windowHeight: system.windowHeight,
-          screenHeight: system.screenHeight,
-          videoHeight: Math.floor(system.windowWidth / 374 * 300),
-          infoHeight: Math.floor(system.windowHeight - system.windowWidth / 374 * 300 - 50)
+          screenHeight: system.screenHeight
         })
       }
     })
@@ -95,6 +98,19 @@ Page({
      */
     wx.setNavigationBarTitle({
       title: '中国银行深圳分行'
+    })
+
+    /**
+     * 获取视频的高度宽度
+     */
+    var query = wx.createSelectorQuery()
+    query.select('#video').boundingClientRect()
+    query.exec((res) => {
+      
+      let videoHeigh = res[0].height
+      this.setData({
+        videoHeight: videoHeigh
+      })
     })
     
   },
@@ -170,9 +186,7 @@ Page({
     }
   },
   onInfoTwo: function(){
-    // this.setData({
-    //   videoHeight: 374
-    // })
+    
   },
   startRecord: function () {
     /**
@@ -359,6 +373,12 @@ Page({
         voiceOrKeyboard: 'voice'
       })
     }
-    
+  },
+  navigateTo(event) {
+    // console.log(event.currentTarget.dataset.url)
+    let url = event.currentTarget.dataset.url
+    wx.navigateTo({
+      url: '../teletext/teletext?url='+url
+    })
   }
 })

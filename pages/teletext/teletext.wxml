@@ -1,0 +1,2 @@
+<!--pages/teletext/teletext.wxml-->
+<web-view src="{{url}}"></web-view>

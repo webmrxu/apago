@@ -3,17 +3,17 @@
 <view class='top-bg bgcolor' style='height:{{bgTopHeight}}px'></view>
 
 <view class="video__window clearfix" >
-  <video style="height:{{686/1.6}}rpx" loop="loop" src="https://anydata.22332008.com/mini/examples/imgs/lsl3-7.mp4"  class="shadow-b video__content" autoplay="autoplay" id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
+  <video style="height:{{686/1.6}}rpx" loop="loop" src="https://anydata.22332008.com/mini/examples/imgs/lsl4-1.mp4"  class=" video__content" autoplay="autoplay" id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
   </video>
-  <view class='top-title-img'>
+  <!-- <view class='top-title-img'>
     中行手机银行带你入驻特惠时空
-    <!-- <image style="width: 131rpx; height: 64rpx;"  src="https://anydata.22332008.com/mini/examples/imgs/top-title.png"></image> -->
-  </view>
+  </view> -->
 </view>  
-<view  style="height:{{686/1.6/2}}rpx"></view>
+<view  style="height:{{videoHeight + 8 - bgTopHeight}}px"></view>
 
 <view class='footer' >
-  <scroll-view scroll-y='{{true}}' scroll-with-animation="true" scroll-into-view="{{toView}}"  style='height:{{screenHeight-bgTopHeight- 686/1.6/4 -50}}px' class='chat-scroll'>
+  <view style="height:{{16}}px"></view>
+  <scroll-view scroll-y='{{true}}' scroll-with-animation="true" scroll-into-view="{{toView}}"  style='height:{{windowHeight- videoHeight - 8 - 50 - 16}}px' class='chat-scroll'>
     <view id='scroll-content'>
       <view wx:for="{{recorderResponseMsg}}" wx:key="_time" >
         <view class='clearfix chat-right' wx:if="{{item.right}}" id="{{item._time}}">
@@ -24,10 +24,19 @@
         </view >
 
         <view class='clearfix chat-left' wx:if="{{item.left}}" id="{{item._time}}">
-          <view class='chat-profile'>
+          <view class='chat-profile' >
             <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
           </view>
-          <view class='chat-content-left'>{{item.left}}</view>
+          <view class='chat-content-left' wx:if="{{!item.teletext}}">{{item.left}}</view>
+          <view class='chat-content-left' data-url='{{item.url}}' wx:if="{{item.teletext}}" bindtap="navigateTo">
+            <view>{{item.title}}</view>
+            <view>
+              <view class='teletext-des float-l'>{{item.des}}</view>
+              <view class='teletext-img float-l'>
+                <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="{{item.img}}"></image>
+              </view>
+            </view>
+          </view>
         </view>
       </view>
     </view>
@@ -35,7 +44,7 @@
   <view class="voice border-t">
     <!-- <view class="voice-button " bindlongpress="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord"> -->
     <view class="voice-button " bindtap="toggleVoiceOrKeyboard">
-      <image hidden="{{voiceOrKeyboard == 'keyboard'}}" style="width: 32px; height: 32px;"  src="https://anydata.22332008.com/mini/examples/imgs/voice_icon.png"></image>
+      <image hidden="{{voiceOrKeyboard == 'keyboard'}}" style="width: 32px; height: 32px;"  src="https://anydata.22332008.com/mini/examples/imgs/voice.png"></image>
       <image hidden="{{voiceOrKeyboard == 'voice'}}" style="width: 32px; height: 32px;"  src="https://anydata.22332008.com/mini/examples/imgs/keyboard.png"></image>
     </view>
     <view class="voice-input">
