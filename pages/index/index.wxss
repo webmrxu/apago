@@ -50,7 +50,7 @@
   display: flex;
   height: 50px;
   padding-bottom: 1px;
-  background: #EBEBEB;
+  background: #f5f5f5;
   position: fixed;
   bottom: 0;
   padding: 0 32rpx;
@@ -114,6 +114,7 @@
   margin-right: 8px;
   background: #f46a64;
   text-align: left;
+  color: #fff;
 }
 .chat-content-left{
   margin-left: 8px;

@@ -9,11 +9,11 @@
     中行手机银行带你入驻特惠时空
   </view> -->
 </view>  
-<view  style="height:{{videoHeight + 8 - bgTopHeight}}px"></view>
+<view style="height:{{videoHeight + 8 - bgTopHeight}}px"></view>
 
 <view class='footer' >
-  <view style="height:{{16}}px"></view>
-  <scroll-view scroll-y='{{true}}' scroll-with-animation="true" scroll-into-view="{{toView}}"  style='height:{{windowHeight- videoHeight - 8 - 50 - 16 -16}}px' class='chat-scroll'>
+  <view style="height:{{16}}px" class='shadow-gap shadow-b'></view>
+  <scroll-view scroll-y='{{true}}' scroll-with-animation="true" scroll-into-view="{{toView}}"  style='height:{{windowHeight- videoHeight - 8 - 50 - 16 -8}}px' class='chat-scroll'>
     <view id='scroll-content'>
       <view wx:for="{{recorderResponseMsg}}" wx:key="_time" >
         <view class='clearfix chat-right' wx:if="{{item.right}}" id="{{item._time}}">

@@ -246,7 +246,8 @@ Page({
       wx.showToast({
         title: '没有听清',
         icon: 'loading',
-        duration: 1000
+        duration: 1000,
+        mask: true
       });
       return false; 
     }
@@ -254,7 +255,8 @@ Page({
     wx.showToast({
       title: '正在上传...',
       icon: 'loading',
-      duration: 60000
+      duration: 60000,
+      mask: true
     });
 
     wx.uploadFile({
@@ -272,7 +274,8 @@ Page({
             wx.showToast({
               title: '语音未识别',
               icon: 'loading',
-              duration: 1000
+              duration: 1000,
+              mask: true
             });
             return false
           }
@@ -312,7 +315,8 @@ Page({
       wx.showToast({
         title: '请先输入文字内容',
         icon: 'none',
-        duration: 1000
+        duration: 1000,
+        mask: true
       });
       return;
     }
@@ -327,7 +331,8 @@ Page({
     })
 
     wx.showLoading({
-      title: '加载中'
+      title: '加载中',
+      mask: true
     })
     wx.request({
       url: hostUrl,
