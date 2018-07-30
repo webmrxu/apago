@@ -3,7 +3,7 @@
 <view class='top-bg bgcolor' style='height:{{bgTopHeight}}px'></view>
 
 <view class="video__window clearfix" >
-  <video style="height:{{686/1.6}}rpx" loop="loop" src="https://anydata.22332008.com/mini/examples/imgs/lsl4-1.mp4"  class=" video__content" autoplay="autoplay" id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
+  <video style="height:{{686/1.6}}rpx" loop="loop" src="https://anydata.22332008.com/mini/examples/imgs/lsl4-2.mp4"  class=" video__content" autoplay="autoplay" id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
   </video>
   <!-- <view class='top-title-img'>
     中行手机银行带你入驻特惠时空
@@ -13,7 +13,7 @@
 
 <view class='footer' >
   <view style="height:{{16}}px"></view>
-  <scroll-view scroll-y='{{true}}' scroll-with-animation="true" scroll-into-view="{{toView}}"  style='height:{{windowHeight- videoHeight - 8 - 50 - 16}}px' class='chat-scroll'>
+  <scroll-view scroll-y='{{true}}' scroll-with-animation="true" scroll-into-view="{{toView}}"  style='height:{{windowHeight- videoHeight - 8 - 50 - 16 -16}}px' class='chat-scroll'>
     <view id='scroll-content'>
       <view wx:for="{{recorderResponseMsg}}" wx:key="_time" >
         <view class='clearfix chat-right' wx:if="{{item.right}}" id="{{item._time}}">
@@ -29,8 +29,8 @@
           </view>
           <view class='chat-content-left' wx:if="{{!item.teletext}}">{{item.left}}</view>
           <view class='chat-content-left' data-url='{{item.url}}' wx:if="{{item.teletext}}" bindtap="navigateTo">
-            <view>{{item.title}}</view>
-            <view>
+            <view class='teletext-title'>{{item.title}}</view>
+            <view class='teletext-content'>
               <view class='teletext-des float-l'>{{item.des}}</view>
               <view class='teletext-img float-l'>
                 <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="{{item.img}}"></image>
@@ -57,6 +57,9 @@
   </view>
 </view>
 
+<view class='voice-gif' hidden = "{{!isRecording}}">
+  <image style='height:{{100}}px;width:{{100}}px' src='https://anydata.22332008.com/mini/examples/imgs/voice.gif'></image>
+</view>
 <!-- <view hidden = "{{hiddenCanvas}}">
   <canvas canvas-id="canvas" style='height:{{videoHeight}}px;width:{{videoWidth}}px' class="canvas"></canvas>
 </view>  -->

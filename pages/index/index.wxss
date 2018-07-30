@@ -105,8 +105,8 @@
 .chat-content-right,.chat-content-left{
   max-width: 460rpx;
   border-radius: 4px;
-  padding: 4px;
-  margin-top: 4px;
+  padding: 8px 6px;
+  margin-top: 8px;
   position: relative;
   font-size: 14px;
 }
@@ -173,5 +173,28 @@
 }
 .teletext-des{
   font-size: 12px;
-  color: #959595;
+  color: #9a9a9a;
+  width: 380rpx;
 }
+.teletext-img{
+  width: 78rpx;
+  height: 78rpx;
+}
+.teletext-content{
+  width: 460rpx;
+}
+.teletext-title{
+  font-size: 14px;
+  color: #272727;
+  padding-bottom: 4px;
+}
+.voice-gif{
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+}
+.voice-gif image{
+  position: relative;
+  right: 50px;
+}
+

@@ -30,7 +30,7 @@ Page({
         title: '中国银行深圳分行',
         img: 'https://anydata.22332008.com/mini/examples/imgs/top-title.png',
         url: 'https://mp.weixin.qq.com/s/zYqXbQjdBG09bC4kXFvZiw',
-        des: '中国银行深圳分行充值大优惠，手机话费充值 7.5 折'
+        des: '中国银行深圳分行充值大优惠，手机话费充值 7.6 折'
       }
     ],
     isPlay: false, // 视频是否播放中
@@ -336,13 +336,26 @@ Page({
         content: this.data.inputValue,
       },
       success: (response) => {
-        // console.log(response)
+        console.log(response)
         let data = response.data
-        
-        let chatObjL = {
-          left: data.message,
-          _time: 'tl-' + (new Date()).getTime()
+        let chatObjL
+        if (data.url) {
+          chatObjL = {
+            teletext: true,
+            title: data.message,
+            img: data.image,
+            url: data.url,
+            des: '中国银行深圳分行充值大优惠，手机话费充值 7.6 折',
+            left: data.message,
+            _time: 'tl-' + (new Date()).getTime()
+          }
+        } else {
+          chatObjL = {
+            left: data.message,
+            _time: 'tl-' + (new Date()).getTime()
+          }
         }
+        
         $this.data.recorderResponseMsg.push(chatObjL)
         $this.setData({
           recorderResponseMsg: $this.data.recorderResponseMsg,

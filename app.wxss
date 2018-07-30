@@ -56,15 +56,21 @@ page{
 .border-b{
   border-bottom: 1px solid #E2E2E2;
 }
+.float-l{
+  float: left;
+}
+.float-r{
+  float: right;
+}
 .clearfix:after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
-  }
-  .cm-top-nav{
-    height: 200rpx;
-    width: 100%;
-  }
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.cm-top-nav{
+  height: 200rpx;
+  width: 100%;
+}
