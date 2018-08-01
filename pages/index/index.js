@@ -279,8 +279,8 @@ Page({
             });
             return false
           }
-          console.log('翻译成功：' + data.translate)
-          console.log('回复成功：' + data.message)
+          // console.log('翻译成功：' + data.translate)
+          // console.log('回复成功：' + data.message)
           let chatObjR = {
             right: data.translate,
             _time: 'tr-' + (new Date()).getTime()
@@ -290,9 +290,22 @@ Page({
             recorderResponseMsg: $this.data.recorderResponseMsg,
             toView: chatObjR._time
           })
-          let chatObjL = {
-            left: data.message,
-            _time: 'tl-' + (new Date()).getTime()
+          let chatObjL
+          if (data.url) {
+            chatObjL = {
+              teletext: true,
+              title: data.message,
+              img: data.image,
+              url: data.url,
+              des: '中国银行深圳分行充值大优惠，手机话费充值 7.6 折',
+              left: data.message,
+              _time: 'tl-' + (new Date()).getTime()
+            }
+          } else {
+            chatObjL = {
+              left: data.message,
+              _time: 'tl-' + (new Date()).getTime()
+            }
           }
           $this.data.recorderResponseMsg.push(chatObjL)
           $this.setData({
