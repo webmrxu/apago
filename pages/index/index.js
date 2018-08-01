@@ -354,7 +354,7 @@ Page({
         content: this.data.inputValue,
       },
       success: (response) => {
-        console.log(response)
+        // console.log(response)
         let data = response.data
         let chatObjL
         if (data.url) {
@@ -373,12 +373,13 @@ Page({
             _time: 'tl-' + (new Date()).getTime()
           }
         }
-        
         $this.data.recorderResponseMsg.push(chatObjL)
         $this.setData({
           recorderResponseMsg: $this.data.recorderResponseMsg,
           toView: chatObjL._time
         })
+        // 清楚文字内容
+
       },
       fail: (error) => {
         console.log('输入文字聊天失败')
