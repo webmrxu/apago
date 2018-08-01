@@ -22,13 +22,13 @@ Page({
     toView: "",
     recorderResponseMsg: [
       {
-        right: 'helo hel helo heloh eloh elohelo oh helo helo elohel ohelohel ohelohelohelo'
+        right: '你好，话费充值优惠活动'
       },
       {
         left: true,
         teletext: true,
-        title: '中国银行深圳分行',
-        img: 'https://anydata.22332008.com/mini/examples/imgs/top-title.png',
+        title: '话费充值76折大优惠',
+        img: 'https://cloud.bankofchina.com/sz/wx/fodder/image/d978998e-4e18-4d7f-9ef1-95624f6cb0b5.jpg',
         url: 'https://mp.weixin.qq.com/s/zYqXbQjdBG09bC4kXFvZiw',
         des: '中国银行深圳分行充值大优惠，手机话费充值 7.6 折'
       }
