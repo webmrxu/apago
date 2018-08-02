@@ -198,4 +198,69 @@
   position: relative;
   right: 50px;
 }
-
+.top-img-content{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+.top-img{
+  width: 685rpx;
+  position: fixed;
+  top: 8px;
+  z-index: 100;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.quick-input{
+  height: 50px;
+  width: 137rpx;
+  line-height: 50px;
+  text-align: center;
+  position: relative;
+}
+.quick-input::after{
+  content: ' ';
+  display: block;
+  background: #f5f5f5;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  transform: rotate(45deg);
+  border-top: 1px solid #E2E2E2;
+  border-left: 1px solid #E2E2E2;
+}
+.activites{
+  position: fixed;
+  bottom: 50px;
+  background: #f5f5f5;
+  right: 16px;
+  width: 180rpx;
+}
+.activites>view{
+  height: 40px;
+  line-height: 40px;
+}
+.relative{
+  position: relative;
+}
+.quick-toggle-icon{
+  position: absolute;
+  right: 8px;
+  width: 6px;
+  height: 4px;
+  top: 24px;
+  
+}
+.toggle-icon-top{
+  transform: rotate(180deg);
+}
+.toggle-icon-bottom{
+  transform: rotate(0deg);
+}
+.voice .hidden-ac::after{
+  display: none;
+}

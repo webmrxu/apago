@@ -13,10 +13,12 @@ Page({
     screenHeight: 0, 
     bgTopHeight: 120,
     videoHeight: 0, // video 元素高度，对应canvas元素高度
-    isRecording: false,
+    isRecording: false, // 正在录音
     recorderSrc: "", // 语音文件
     inputValue: "", // 输入值
     voiceOrKeyboard: 'voice', // 'voice' 语音输入， 'keyboard' 键盘
+    showQuickInput: true, // 展示快捷输入
+    showActivites: false, // 热门活动
     voiceTitle: "按住 说话",
     stopVoiceTitle: '松开 结束',
     toView: "",
@@ -104,13 +106,24 @@ Page({
      * 获取视频的高度宽度
      */
     var query = wx.createSelectorQuery()
-    query.select('#video').boundingClientRect()
+    // query.select('#video').boundingClientRect()
+    // query.exec((res) => {
+    //   if (res[0]){
+    //     let videoHeigh = res[0].height
+    //     this.setData({
+    //       videoHeight: videoHeigh
+    //     })
+    //   }
+    // })
+
+    query.select('#home-img').boundingClientRect()
     query.exec((res) => {
-      
-      let videoHeigh = res[0].height
-      this.setData({
-        videoHeight: videoHeigh
-      })
+      if (res[0]) {
+        let videoHeigh = res[0].height
+        this.setData({
+          videoHeight: videoHeigh
+        })
+      }
     })
     
   },
@@ -333,8 +346,26 @@ Page({
       });
       return;
     }
+    function clearInputValue() {
+      // 清除文字内容
+      $this.setData({
+        inputValue: ''
+      })
+    }
+    this.sendText(this.data.inputValue, clearInputValue)
+
+  },
+  sendText(text, callBack) {
+    /**
+     * 发送文字
+     */
+    if (!text) {
+      return
+    }
+
+    let $this = this
     let chatObjR = {
-      right: this.data.inputValue,
+      right: text,
       _time: 'tr-' + (new Date()).getTime()
     }
     $this.data.recorderResponseMsg.push(chatObjR)
@@ -349,12 +380,11 @@ Page({
     })
     wx.request({
       url: hostUrl,
-      data:{
+      data: {
         action: 'sendText',
-        content: this.data.inputValue,
+        content: text,
       },
       success: (response) => {
-        // console.log(response)
         let data = response.data
         let chatObjL
         if (data.url) {
@@ -378,8 +408,10 @@ Page({
           recorderResponseMsg: $this.data.recorderResponseMsg,
           toView: chatObjL._time
         })
-        // 清楚文字内容
-
+        // 完成回调
+        if (callBack) {
+          callBack()
+        }
       },
       fail: (error) => {
         console.log('输入文字聊天失败')
@@ -412,5 +444,61 @@ Page({
     wx.navigateTo({
       url: '../teletext/teletext?url='+url
     })
+  },
+  toggleActivites() {
+    let status = !this.data.showActivites
+    this.setData({
+      showActivites: status
+    })
+  },
+  inputFocus() {
+    this.setData({
+      showQuickInput: false,
+      showActivites: false
+    })
+  },
+  inputBlur() {
+    this.setData({
+      showQuickInput: true,
+      showActivites: false
+    })
+  },
+  gotoActivites(event) {
+    this.bubble() // 初始化
+    let id = event.currentTarget.dataset.id
+    // console.log(id)
+    switch (id) {
+      case '1':
+        // console.log(1)
+        this.sendText('余额理财')
+        break
+      case '2':
+        // console.log(2)
+        this.sendText('中银E贷')
+        break
+      case '3':
+        // console.log(3)
+        this.sendText('手机银行')
+        break
+      case '4':
+        // console.log(4)
+        this.sendText('网点助手')
+        break
+      case '5':
+        // console.log(5)
+        this.sendText('金融快讯')
+        break
+    }
+      
+  },
+  bubble() {
+    // console.log('冒泡')
+    this.setData({
+      showQuickInput: true,
+      showActivites: false
+    })
+  },
+  cancelBubble() {
+    // console.log('取消冒泡')
   }
 })

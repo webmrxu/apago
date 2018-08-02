@@ -1,65 +1,81 @@
 <!-- loop="loop" 循环 autoplay="autoplay" 自动播放 bindtimeupdate: 播放中获取播放进度 bindtap="onTap":点击-->
+<view bindtap="bubble">
+  <view class='top-bg bgcolor' style='height:{{bgTopHeight}}px'></view>
 
-<view class='top-bg bgcolor' style='height:{{bgTopHeight}}px'></view>
+  <!-- <view class="video__window clearfix" >
+    <video style="height:{{686/1.6}}rpx" loop="loop" src="https://anydata.22332008.com/mini/examples/imgs/lsl4-2.mp4"  class=" video__content" autoplay="autoplay" id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
+    </video>
+  </view>   -->
+  <view class='clearfix top-img-content'>
+    <image style="height:{{686/1.6}}rpx" class="top-img" id="home-img" src="https://anydata.22332008.com/mini/examples/imgs/76-2.gif"></image>
+  </view>
+  <view style="height:{{videoHeight + 8 - bgTopHeight}}px"></view>
 
-<view class="video__window clearfix" >
-  <video style="height:{{686/1.6}}rpx" loop="loop" src="https://anydata.22332008.com/mini/examples/imgs/lsl4-2.mp4"  class=" video__content" autoplay="autoplay" id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
-  </video>
-  <!-- <view class='top-title-img'>
-    中行手机银行带你入驻特惠时空
-  </view> -->
-</view>  
-<view style="height:{{videoHeight + 8 - bgTopHeight}}px"></view>
+  <view class='footer' >
+    <view style="height:{{16}}px" class='shadow-gap shadow-b'></view>
+    <scroll-view scroll-y='{{true}}' scroll-with-animation="true" scroll-into-view="{{toView}}"  style='height:{{windowHeight- videoHeight - 8 - 50 - 16 -8}}px' class='chat-scroll'>
+      <view id='scroll-content'>
+        <view wx:for="{{recorderResponseMsg}}" wx:key="_time" >
+          <view class='clearfix chat-right' wx:if="{{item.right}}" id="{{item._time}}">
+            <view class='chat-profile'>
+              <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
+            </view>
+            <view class='chat-content-right'>{{item.right}}</view>
+          </view >
 
-<view class='footer' >
-  <view style="height:{{16}}px" class='shadow-gap shadow-b'></view>
-  <scroll-view scroll-y='{{true}}' scroll-with-animation="true" scroll-into-view="{{toView}}"  style='height:{{windowHeight- videoHeight - 8 - 50 - 16 -8}}px' class='chat-scroll'>
-    <view id='scroll-content'>
-      <view wx:for="{{recorderResponseMsg}}" wx:key="_time" >
-        <view class='clearfix chat-right' wx:if="{{item.right}}" id="{{item._time}}">
-          <view class='chat-profile'>
-            <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
-          </view>
-          <view class='chat-content-right'>{{item.right}}</view>
-        </view >
-
-        <view class='clearfix chat-left' wx:if="{{item.left}}" id="{{item._time}}">
-          <view class='chat-profile' >
-            <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
-          </view>
-          <view class='chat-content-left' wx:if="{{!item.teletext}}">{{item.left}}</view>
-          <view class='chat-content-left' data-url='{{item.url}}' wx:if="{{item.teletext}}" bindtap="navigateTo">
-            <view class='teletext-title'>{{item.title}}</view>
-            <view class='teletext-content'>
-              <view class='teletext-des float-l'>{{item.des}}</view>
-              <view class='teletext-img float-l'>
-                <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="{{item.img}}"></image>
+          <view class='clearfix chat-left' wx:if="{{item.left}}" id="{{item._time}}">
+            <view class='chat-profile' >
+              <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
+            </view>
+            <view class='chat-content-left' wx:if="{{!item.teletext}}">{{item.left}}</view>
+            <view class='chat-content-left' data-url='{{item.url}}' wx:if="{{item.teletext}}" bindtap="navigateTo">
+              <view class='teletext-title'>{{item.title}}</view>
+              <view class='teletext-content'>
+                <view class='teletext-des float-l'>{{item.des}}</view>
+                <view class='teletext-img float-l'>
+                  <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="{{item.img}}"></image>
+                </view>
               </view>
             </view>
           </view>
         </view>
       </view>
-    </view>
-  </scroll-view>
-  <view class="voice border-t">
-    <!-- <view class="voice-button " bindlongpress="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord"> -->
-    <view class="voice-button " bindtap="toggleVoiceOrKeyboard">
-      <image hidden="{{voiceOrKeyboard == 'keyboard'}}" style="width: 32px; height: 32px;"  src="https://anydata.22332008.com/mini/examples/imgs/voice.png"></image>
-      <image hidden="{{voiceOrKeyboard == 'voice'}}" style="width: 32px; height: 32px;"  src="https://anydata.22332008.com/mini/examples/imgs/keyboard.png"></image>
-    </view>
-    <view class="voice-input">
-      <input hidden="{{voiceOrKeyboard == 'keyboard'}}" class="border-b" maxlength="-1" cursor-spacing="10" confirm-hold="true" bindconfirm="sendTextMessage" confirm-type="send" bindinput="bindKeyInput"/>
-      <view bindlongpress="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord" hidden="{{voiceOrKeyboard == 'voice'}}" class='logtab-button border'>{{isRecording?stopVoiceTitle:voiceTitle}}</view>
-    </view>
-    <view class="voice-send ">
-      <view class="send-button bgcolor" bindtap="sendTextMessage">发送</view>
+    </scroll-view>
+    <view class="voice border-t" catchtap="cancelBubble">
+      <!-- <view class="voice-button " bindlongpress="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord"> -->
+      <view class="voice-button " bindtap="toggleVoiceOrKeyboard">
+        <image hidden="{{voiceOrKeyboard == 'keyboard'}}" style="width: 32px; height: 32px;"  src="https://anydata.22332008.com/mini/examples/imgs/voice.png"></image>
+        <image hidden="{{voiceOrKeyboard == 'voice'}}" style="width: 32px; height: 32px;"  src="https://anydata.22332008.com/mini/examples/imgs/keyboard.png"></image>
+      </view>
+      <view class="voice-input">
+        <input value="{{inputValue}}" hidden="{{voiceOrKeyboard == 'keyboard'}}" bindblur="inputBlur" bindfocus="inputFocus" class="border-b" maxlength="-1" cursor-spacing="10" confirm-hold="true" bindconfirm="sendTextMessage" confirm-type="send" bindinput="bindKeyInput"/>
+        <view bindlongpress="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord" hidden="{{voiceOrKeyboard == 'voice'}}" class='logtab-button border'>{{isRecording?stopVoiceTitle:voiceTitle}}</view>
+      </view>
+      <view class="voice-send" hidden ="{{showQuickInput}}">
+        <view class="send-button bgcolor" bindtap="sendTextMessage">发送</view>
+      </view>
+
+      <view class="quick-input {{showActivites?'show-ac':'hidden-ac'}}" hidden ="{{!showQuickInput}}" catchtap="toggleActivites">
+        <view class="relative">
+          <text class="quick-button float-l" >热门活动</text>
+          <image class="quick-toggle-icon {{showActivites? 'toggle-icon-bottom':'toggle-icon-top'}}" src="https://anydata.22332008.com/mini/examples/imgs/icon_triangle.png"></image>
+        </view>
+        <view class='activites border' hidden ="{{!showActivites}}">
+          <view catchtap = "gotoActivites" data-id="1"><text>余额理财</text></view>
+          <view catchtap = "gotoActivites" data-id="2"><text>中银E代</text></view>
+          <view catchtap = "gotoActivites" data-id="3"><text>手机银行</text></view>
+          <view catchtap = "gotoActivites" data-id="4"><text>网点助手</text></view>
+          <view catchtap = "gotoActivites" data-id="5"><text>金融快讯</text></view>
+        </view>
+      </view>
+      
     </view>
   </view>
-</view>
 
-<view class='voice-gif' hidden = "{{!isRecording}}">
-  <image style='height:{{100}}px;width:{{100}}px' src='https://anydata.22332008.com/mini/examples/imgs/voice.gif'></image>
-</view>
+  <view class='voice-gif' hidden = "{{!isRecording}}">
+    <image style='height:{{100}}px;width:{{100}}px' src='https://anydata.22332008.com/mini/examples/imgs/voice.gif'></image>
+  </view>
 <!-- <view hidden = "{{hiddenCanvas}}">
   <canvas canvas-id="canvas" style='height:{{videoHeight}}px;width:{{videoWidth}}px' class="canvas"></canvas>
 </view>  -->
+</view>
