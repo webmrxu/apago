@@ -9,8 +9,8 @@
   <view class='clearfix top-img-content'>
     <view class='top-img' style="height:{{686/1.6}}rpx" id="home-img">
       <!-- <image style="height:{{686/1.6}}rpx" class="top-img" id="home-img" src="https://anydata.22332008.com/mini/examples/imgs/gif-76.gif"></image> -->
-      <swiper indicator-color="rgba(255,255,255, 1)" indicator-active-color="rgba(244,106,100, 1)" indicator-dots="{{indicatorDots}}" style="height:100%"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-        <block wx:for="{{cursorImgs}}">
+      <swiper circular="{{true}}" indicator-color="rgba(255,255,255, 1)" indicator-active-color="rgba(244,106,100, 1)" indicator-dots="{{indicatorDots}}" style="height:100%"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{cursorImgs}}" wx:key="item">
           <swiper-item>
             <image src="{{item}}" class="slide-image"/>
           </swiper-item>
@@ -41,7 +41,7 @@
             <view class='chat-content-left' data-url='{{item.url}}' wx:if="{{item.teletext}}" bindtap="navigateTo">
               <view class='teletext-title'>{{item.title}}</view>
               <view class='teletext-content'>
-                <view class='teletext-des float-l'>{{item.des}}</view>
+                <view class='teletext-des float-l'>{{item.disc}}</view>
                 <view class='teletext-img float-l'>
                   <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="{{item.img}}"></image>
                 </view>
@@ -70,13 +70,7 @@
           <text class="quick-button float-l" >热门活动</text>
           <image class="quick-toggle-icon {{showActivites? 'toggle-icon-bottom':'toggle-icon-top'}}" src="https://anydata.22332008.com/mini/examples/imgs/icon_triangle.png"></image>
         </view>
-        <view class='activites border' hidden ="{{!showActivites}}">
-          <view catchtap = "gotoActivites" data-id="1"><text>余额理财</text></view>
-          <view catchtap = "gotoActivites" data-id="2"><text>中银E代</text></view>
-          <view catchtap = "gotoActivites" data-id="3"><text>手机银行</text></view>
-          <view catchtap = "gotoActivites" data-id="4"><text>网点助手</text></view>
-          <view catchtap = "gotoActivites" data-id="5"><text>金融快讯</text></view>
-        </view>
+
       </view>
       
     </view>

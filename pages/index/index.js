@@ -24,16 +24,16 @@ Page({
     toView: "",
     recorderResponseMsg: [
       {
-        right: '你好，话费充值优惠活动'
-      },
-      {
-        left: true,
-        teletext: true,
-        title: '话费充值76折大优惠',
-        img: 'https://cloud.bankofchina.com/sz/wx/fodder/image/d978998e-4e18-4d7f-9ef1-95624f6cb0b5.jpg',
-        url: 'https://mp.weixin.qq.com/s/zYqXbQjdBG09bC4kXFvZiw',
-        des: '中国银行深圳分行充值大优惠，手机话费充值 7.6 折'
+        left: '大家好，我是中中。从今天开始我成为您的银行助手，随时为您解答。'
       }
+      // {
+      //   left: true,
+      //   teletext: true,
+      //   title: '话费充值76折大优惠',
+      //   img: 'https://cloud.bankofchina.com/sz/wx/fodder/image/d978998e-4e18-4d7f-9ef1-95624f6cb0b5.jpg',
+      //   url: 'https://mp.weixin.qq.com/s/zYqXbQjdBG09bC4kXFvZiw',
+      //   des: '中国银行深圳分行充值大优惠，手机话费充值 7.6 折'
+      // }
     ],
     isPlay: false, // 视频是否播放中
     ctx: {},
@@ -322,7 +322,7 @@ Page({
               title: data.message,
               img: data.image,
               url: data.url,
-              des: '中国银行深圳分行充值大优惠，手机话费充值 7.6 折',
+              disc: data.disc,
               left: data.message,
               _time: 'tl-' + (new Date()).getTime()
             }
@@ -405,7 +405,7 @@ Page({
             title: data.message,
             img: data.image,
             url: data.url,
-            des: '中国银行深圳分行充值大优惠，手机话费充值 7.6 折',
+            disc: data.disc,
             left: data.message,
             _time: 'tl-' + (new Date()).getTime()
           }
@@ -474,34 +474,6 @@ Page({
       showQuickInput: true,
       showActivites: false
     })
-  },
-  gotoActivites(event) {
-    this.bubble() // 初始化
-    let id = event.currentTarget.dataset.id
-    // console.log(id)
-    switch (id) {
-      case '1':
-        // console.log(1)
-        this.sendText('余额理财')
-        break
-      case '2':
-        // console.log(2)
-        this.sendText('中银E贷')
-        break
-      case '3':
-        // console.log(3)
-        this.sendText('手机银行')
-        break
-      case '4':
-        // console.log(4)
-        this.sendText('网点助手')
-        break
-      case '5':
-        // console.log(5)
-        this.sendText('金融快讯')
-        break
-    }
-      
   },
   bubble() {
     // console.log('冒泡')
