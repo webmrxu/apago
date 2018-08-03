@@ -43,7 +43,19 @@ Page({
     gif76: ['https://www.apago.top/examples/imgs/76-01.jpg', 
       'https://www.apago.top/examples/imgs/76-02.jpg',
       'https://www.apago.top/examples/imgs/76-03.jpg',
-      'https://www.apago.top/examples/imgs/76-04.jpg'],
+      'https://www.apago.top/examples/imgs/76-04.jpg'
+    ],
+    cursorImgs: [
+      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-1.gif',
+      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-2.gif',
+      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-3.gif',
+      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-4.gif',
+      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-5.gif'
+    ],
+    indicatorDots: true,
+    autoplay: true,
+    interval: 3000,
+    duration: 1000
   },
   canvasIdErrorCallback: function (e) {
     console.error('canvas画布启动失败：' + e.detail.errMsg)

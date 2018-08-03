@@ -7,7 +7,16 @@
     </video>
   </view>   -->
   <view class='clearfix top-img-content'>
-    <image style="height:{{686/1.6}}rpx" class="top-img" id="home-img" src="https://anydata.22332008.com/mini/examples/imgs/76-2.gif"></image>
+    <view class='top-img' style="height:{{686/1.6}}rpx" id="home-img">
+      <!-- <image style="height:{{686/1.6}}rpx" class="top-img" id="home-img" src="https://anydata.22332008.com/mini/examples/imgs/gif-76.gif"></image> -->
+      <swiper indicator-color="rgba(255,255,255, 1)" indicator-active-color="rgba(244,106,100, 1)" indicator-dots="{{indicatorDots}}" style="height:100%"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{cursorImgs}}">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image"/>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
   </view>
   <view style="height:{{videoHeight + 8 - bgTopHeight}}px"></view>
 
@@ -19,6 +28,7 @@
           <view class='clearfix chat-right' wx:if="{{item.right}}" id="{{item._time}}">
             <view class='chat-profile'>
               <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
+              
             </view>
             <view class='chat-content-right'>{{item.right}}</view>
           </view >

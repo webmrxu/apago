@@ -264,3 +264,6 @@
 .voice .hidden-ac::after{
   display: none;
 }
+.slide-image{
+  width: 100%;
+}
