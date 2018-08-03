@@ -83,3 +83,5 @@
   <canvas canvas-id="canvas" style='height:{{videoHeight}}px;width:{{videoWidth}}px' class="canvas"></canvas>
 </view>  -->
 </view>
+
+<audio id="audio" src="https://anydata.22332008.com/mini/examples/music/music.mp3"></audio>

@@ -24,7 +24,7 @@ Page({
     toView: "",
     recorderResponseMsg: [
       {
-        left: '大家好，我是中中。从今天开始我成为您的银行助手，随时为您解答。'
+        left: '大家好，我是中中机器人，从今天开始我成为您的银行助手，随时随地解答您的问题。'
       }
       // {
       //   left: true,
@@ -40,11 +40,6 @@ Page({
     videoContext: {},
     currentTime: 0, // 当前视频播放的进度
     logoImg: 'https://www.apago.top/video/logos.png', // logo图片资源地址
-    gif76: ['https://www.apago.top/examples/imgs/76-01.jpg', 
-      'https://www.apago.top/examples/imgs/76-02.jpg',
-      'https://www.apago.top/examples/imgs/76-03.jpg',
-      'https://www.apago.top/examples/imgs/76-04.jpg'
-    ],
     cursorImgs: [
       'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-1.gif',
       'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-2.gif',
@@ -54,7 +49,7 @@ Page({
     ],
     indicatorDots: true,
     autoplay: true,
-    interval: 3000,
+    interval: 5000,
     duration: 1000
   },
   canvasIdErrorCallback: function (e) {
@@ -72,7 +67,11 @@ Page({
      * 页面资源加载
      */
     this.downlodFile()
-
+    /**
+     * 音乐播放
+     */
+    const audioCtx = wx.createAudioContext('audio')
+    audioCtx.play()
   },
   bindtimeupdate: function(event) {
     /**
@@ -137,6 +136,23 @@ Page({
         })
       }
     })
+
+    /**
+     * 音乐播放
+     */
+    // const innerAudioContext = wx.createInnerAudioContext()
+    // innerAudioContext.autoplay = true
+    // innerAudioContext.src = 'https://anydata.22332008.com/mini/examples/music/music.mp3'
+    // innerAudioContext.onPlay(() => {
+    //   console.log('开始播放')
+    // })
+    // innerAudioContext.onError((res) => {
+    //   console.log(res.errMsg)
+    //   console.log(res.errCode)
+    // })
+
+    // const backgroundAudioManager = wx.getBackgroundAudioManager()
+    // backgroundAudioManager.src = 'https://anydata.22332008.com/mini/examples/music/music.mp3' // 设置了 src 之后会自动播放
     
   },
   downloadImg: function(img){
