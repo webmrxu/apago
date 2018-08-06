@@ -254,3 +254,11 @@
 .slide-image{
   width: 100%;
 }
+.plus-button{
+  width: 64rpx;
+  top: 10px;
+}
+.quick-input{
+  display: flex;
+  justify-content: center;
+}

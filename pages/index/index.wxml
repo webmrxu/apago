@@ -2,14 +2,9 @@
 <view bindtap="bubble">
   <view class='top-bg bgcolor' style='height:{{bgTopHeight}}px'></view>
 
-  <!-- <view class="video__window clearfix" >
-    <video style="height:{{686/1.6}}rpx" loop="loop" src="https://anydata.22332008.com/mini/examples/imgs/lsl4-2.mp4"  class=" video__content" autoplay="autoplay" id="video"  objectFit="cover" show-center-play-btn="{{false}}" show-play-btn="{{false}}"  controls="{{false}}" bindtimeupdate="bindtimeupdate" enable-progress-gesture="{{false}}" bindplay="videoBindplay" bindpause="videoBindPause" binderror="videoBinderror">
-    </video>
-  </view>   -->
   <view class='clearfix top-img-content'>
     <view class='top-img' style="height:{{686/1.6}}rpx" id="home-img">
-      <!-- <image style="height:{{686/1.6}}rpx" class="top-img" id="home-img" src="https://anydata.22332008.com/mini/examples/imgs/gif-76.gif"></image> -->
-      <swiper circular="{{true}}" indicator-color="rgba(255,255,255, 1)" indicator-active-color="rgba(244,106,100, 1)" indicator-dots="{{indicatorDots}}" style="height:100%"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <swiper autoplay="{{autoplay}}" current="{{current}}" circular="{{true}}" indicator-color="rgba(255,255,255, 1)" indicator-active-color="rgba(244,106,100, 1)" indicator-dots="{{indicatorDots}}" style="height:100%"  interval="{{interval}}" duration="{{duration}}">
         <block wx:for="{{cursorImgs}}" wx:key="item">
           <swiper-item>
             <image src="{{item}}" class="slide-image"/>
@@ -27,7 +22,7 @@
         <view wx:for="{{recorderResponseMsg}}" wx:key="_time" >
           <view class='clearfix chat-right' wx:if="{{item.right}}" id="{{item._time}}">
             <view class='chat-profile'>
-              <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
+              <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/user.png"></image>
               
             </view>
             <view class='chat-content-right'>{{item.right}}</view>
@@ -35,7 +30,7 @@
 
           <view class='clearfix chat-left' wx:if="{{item.left}}" id="{{item._time}}">
             <view class='chat-profile' >
-              <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-cn.jpg"></image>
+              <image style="width: 40px; height: 40px;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-zz-png.png"></image>
             </view>
             <view class='chat-content-left' wx:if="{{!item.teletext}}">{{item.left}}</view>
             <view class='chat-content-left' data-url='{{item.url}}' wx:if="{{item.teletext}}" bindtap="navigateTo">
@@ -43,7 +38,7 @@
               <view class='teletext-content'>
                 <view class='teletext-des float-l'>{{item.disc}}</view>
                 <view class='teletext-img float-l'>
-                  <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="{{item.img}}"></image>
+                  <image style="width: 40px; height: 40px;"  src="{{item.img}}"></image>
                 </view>
               </view>
             </view>
@@ -66,11 +61,10 @@
       </view>
 
       <view class="quick-input {{showActivites?'show-ac':'hidden-ac'}}" hidden ="{{!showQuickInput}}" catchtap="toggleActivites">
-        <view class="relative">
-          <text class="quick-button float-l" >热门活动</text>
-          <image class="quick-toggle-icon {{showActivites? 'toggle-icon-bottom':'toggle-icon-top'}}" src="https://anydata.22332008.com/mini/examples/imgs/icon_triangle.png"></image>
+        <view class="relative plus-button">
+          <image class="quick-button" style='height:32px;width:32px'  src="https://anydata.22332008.com/mini/examples/imgs/plus_icon.png">
+          </image>
         </view>
-
       </view>
       
     </view>
@@ -79,9 +73,6 @@
   <view class='voice-gif' hidden = "{{!isRecording}}">
     <image style='height:{{100}}px;width:{{100}}px' src='https://anydata.22332008.com/mini/examples/imgs/voice.gif'></image>
   </view>
-<!-- <view hidden = "{{hiddenCanvas}}">
-  <canvas canvas-id="canvas" style='height:{{videoHeight}}px;width:{{videoWidth}}px' class="canvas"></canvas>
-</view>  -->
 </view>
 
 <audio id="audio" src="https://anydata.22332008.com/mini/examples/music/music.mp3"></audio>

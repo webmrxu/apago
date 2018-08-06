@@ -5,6 +5,7 @@ var whisper = require('../../vendor/index');
 var config = require('../../config');
 var recorderSrc = '';
 var hostUrl = "https://anydata.22332008.com/info.php";
+var timer;
 Page({
   data: {
     fps: 24, // 动画帧
@@ -41,6 +42,7 @@ Page({
     currentTime: 0, // 当前视频播放的进度
     logoImg: 'https://www.apago.top/video/logos.png', // logo图片资源地址
     cursorImgs: [
+      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-0.gif',
       'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-1.gif',
       'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-2.gif',
       'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-3.gif',
@@ -48,9 +50,10 @@ Page({
       'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-5.gif'
     ],
     indicatorDots: true,
-    autoplay: true,
     interval: 5000,
-    duration: 1000
+    duration: 1000,
+    current: 0,
+    autoplay: false
   },
   canvasIdErrorCallback: function (e) {
     console.error('canvas画布启动失败：' + e.detail.errMsg)
@@ -138,22 +141,14 @@ Page({
     })
 
     /**
-     * 音乐播放
+     * 开始轮播
      */
-    // const innerAudioContext = wx.createInnerAudioContext()
-    // innerAudioContext.autoplay = true
-    // innerAudioContext.src = 'https://anydata.22332008.com/mini/examples/music/music.mp3'
-    // innerAudioContext.onPlay(() => {
-    //   console.log('开始播放')
-    // })
-    // innerAudioContext.onError((res) => {
-    //   console.log(res.errMsg)
-    //   console.log(res.errCode)
-    // })
-
-    // const backgroundAudioManager = wx.getBackgroundAudioManager()
-    // backgroundAudioManager.src = 'https://anydata.22332008.com/mini/examples/music/music.mp3' // 设置了 src 之后会自动播放
-    
+    timer = setTimeout(() => {
+      this.setData({
+        autoplay: true,
+        current: 1
+      })
+    }, 8000)
   },
   downloadImg: function(img){
     if (Object.prototype.toString.call(img) === "[object Array]"){ // 加载一组图片
