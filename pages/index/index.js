@@ -57,52 +57,64 @@ Page({
     showBottom: false,
     bottomCursor: [
       [{
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       },
       {
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       },
       {
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       },
       {
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       },
       {
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       },
       {
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       },
       {
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       },
       {
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       }],
       [{
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       },
       {
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       },
       {
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       },
       {
-        img: 'sdfsd',
-        title: '123'
+        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        title: '123',
+        keyWord: '76折'
       }]
     ]
   },
@@ -409,6 +421,9 @@ Page({
     })     
   },
   sendTextMessage() {
+    this.setData({
+      showBottom: false
+    })
     // console.log(this.data.inputValue)
     let $this = this
     if (!this.data.inputValue) {
@@ -430,6 +445,9 @@ Page({
 
   },
   sendText(text, callBack) {
+    this.setData({
+      showBottom: false
+    })
     /**
      * 发送文字
      */
@@ -552,9 +570,10 @@ Page({
     /**
      * 切换底部操作栏显示和隐藏
      */
-    console.log(this)
+    // console.log(this)
+    let status = !this.data.showBottom
     this.setData({
-      showBottom: true
+      showBottom: status
     })
   }
 })

@@ -270,15 +270,15 @@
 }
 .cursor-item{
   float: left;
-  width: 25%;
-  padding: 16px 0;
   text-align: center;
+  width: 100%;
+  border-radius: 4px;
 }
 .bottom-cursor swiper{
-  height: 200px;
+  height: 458rpx;
 }
 .show-bottom{
-  bottom: 200px;
+  bottom: 458rpx;
   border-bottom: 1px solid #E2E2E2;
 }
 .show-quick .quick-input{
@@ -286,4 +286,25 @@
 }
 .show-quick .voice-input{
   width: 558rpx;
+}
+.cursor-onepage{
+  width: 25%;
+  float: left;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 32rpx;
+}
+.button-content{
+  padding: 0 32rpx;
+}
+.button-img{
+  width: 110rpx;
+  margin: 0 auto;
+  height: 110rpx;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
 }

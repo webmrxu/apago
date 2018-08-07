@@ -80,9 +80,15 @@
   <swiper autoplay="{{false}}" duration="{{duration}}" circular="{{true}}" indicator-color="rgba(255,255,255, 1)" indicator-active-color="rgba(244,106,100, 1)" indicator-dots="{{indicatorDots}}">
     <block wx:for="{{bottomCursor}}">
       <swiper-item>
-        <view>
-          <view wx:for="{{item}}" class='cursor-onepage'>
-            <view class='float-loop' class='cursor-item'>{{item.title}}</view>
+        <view class='clearfix button-content'>
+          <view wx:for="{{item}}" class='cursor-onepage clearfix'>
+            
+            <view class='float-loop' class='cursor-item'>
+              <view class="button-img border">
+                <image src="{{item.img}}" style='height:{{24}}px;width:{{24}}px' ></image>
+              </view>
+              <view><text>{{item.title}}</text></view>
+            </view>
           </view>
         </view>
       </swiper-item>
