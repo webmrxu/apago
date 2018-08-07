@@ -25,7 +25,12 @@
               <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/user.png"></image>
               
             </view>
-            <view class='chat-content-right'>{{item.right}}</view>
+            <view class='chat-content-right relative {{item._rightVoice?"b":"a"}}'>
+              {{item.right}}
+              <view class='parsing-tip' wx:if="{{item._rightVoice}}">
+                <image style="width: 12px; height: 12px;" src='https://anydata.22332008.com/mini/examples/imgs/icon_paring.png'></image> 语音识别
+              </view>
+            </view>
           </view >
 
           <view class='clearfix chat-left' wx:if="{{item.left}}" id="{{item._time}}">
@@ -72,6 +77,10 @@
   <view class='voice-gif' hidden = "{{!isRecording}}">
     <image style='height:{{100}}px;width:{{100}}px' src='https://anydata.22332008.com/mini/examples/imgs/voice.gif'></image>
   </view>
+  <!-- <view class='voice-gif' hidden = "{{!isParsing}}">
+    <image style='height:{{100}}px;width:{{100}}px' src='https://anydata.22332008.com/mini/examples/imgs/downing.gif'></image>
+  </view> -->
+  
 </view>
 
 <audio id="audio" src="https://anydata.22332008.com/mini/examples/music/music.mp3"></audio>

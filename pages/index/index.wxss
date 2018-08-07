@@ -109,6 +109,8 @@
   margin-top: 8px;
   position: relative;
   font-size: 14px;
+  min-width: 40rpx;
+  word-wrap:break-word;
 }
 .chat-content-right{
   margin-right: 8px;
@@ -129,7 +131,7 @@
   transform: rotate(45deg);
   position: absolute;
   left: -4px;
-  top: 6px;
+  top: 12px;
 }
 .chat-content-right::before{
   content: ' ';
@@ -140,7 +142,7 @@
   transform: rotate(45deg);
   position: absolute;
   right: -4px;
-  top: 6px;
+  top: 12px;
 }
 .chat-left>view{
   float: left;
@@ -253,6 +255,7 @@
 }
 .slide-image{
   width: 100%;
+  height: 100%;
 }
 .plus-button{
   width: 100%;
@@ -309,4 +312,19 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 4px;
+}
+.parsing-tip{
+  font-size: 10px;
+  position: absolute;
+  bottom: -16px;
+  color: #aaa;
+  width: 70px;
+  right: -8px;
+}
+.b {
+  margin-bottom: 20px;
+}
+.parsing-tip image{
+  position: relative;
+  top: 2px;
 }

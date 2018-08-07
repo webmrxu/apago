@@ -15,6 +15,7 @@ Page({
     bgTopHeight: 120,
     videoHeight: 0, // video 元素高度，对应canvas元素高度
     isRecording: false, // 正在录音
+    // isParsing: true,//语言解析中
     recorderSrc: "", // 语音文件
     inputValue: "", // 输入值
     voiceOrKeyboard: 'voice', // 'voice' 语音输入， 'keyboard' 键盘
@@ -211,7 +212,7 @@ Page({
         autoplay: true,
         current: 1
       })
-    }, 10000)
+    }, 13000)
   },
   downloadImg: function(img){
     if (Object.prototype.toString.call(img) === "[object Array]"){ // 加载一组图片
@@ -352,7 +353,7 @@ Page({
     }
 
     wx.showToast({
-      title: '正在上传...',
+      title: '请稍后',
       icon: 'loading',
       duration: 60000,
       mask: true
@@ -382,7 +383,8 @@ Page({
           // console.log('回复成功：' + data.message)
           let chatObjR = {
             right: data.translate,
-            _time: 'tr-' + (new Date()).getTime()
+            _time: 'tr-' + (new Date()).getTime(),
+            _rightVoice: true
           }
           $this.data.recorderResponseMsg.push(chatObjR)
           $this.setData({
@@ -468,7 +470,7 @@ Page({
     })
 
     wx.showLoading({
-      title: '加载中',
+      title: '请稍后',
       mask: true
     })
     wx.request({
