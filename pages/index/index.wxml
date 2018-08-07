@@ -46,7 +46,7 @@
         </view>
       </view>
     </scroll-view>
-    <view class="voice border-t" catchtap="cancelBubble">
+    <view class="voice border-t {{showBottom? 'show-bottom':'hidden-bottom'}} {{showQuickInput?'show-quick':'hidden-quick'}}" catchtap="cancelBubble">
       <!-- <view class="voice-button " bindlongpress="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord"> -->
       <view class="voice-button " bindtap="toggleVoiceOrKeyboard">
         <image hidden="{{voiceOrKeyboard == 'keyboard'}}" style="width: 32px; height: 32px;"  src="https://anydata.22332008.com/mini/examples/imgs/voice.png"></image>
@@ -60,13 +60,12 @@
         <view class="send-button bgcolor" bindtap="sendTextMessage">发送</view>
       </view>
 
-      <view class="quick-input {{showActivites?'show-ac':'hidden-ac'}}" hidden ="{{!showQuickInput}}" catchtap="toggleActivites">
-        <view class="relative plus-button">
+      <view  class="quick-input {{showActivites?'show-ac':'hidden-ac'}}" hidden ="{{!showQuickInput}}" catchtap="toggleActivites">
+        <view class="relative plus-button" bindtap="showBottomContent">
           <image class="quick-button" style='height:32px;width:32px'  src="https://anydata.22332008.com/mini/examples/imgs/plus_icon.png">
           </image>
         </view>
       </view>
-      
     </view>
   </view>
 
@@ -76,3 +75,17 @@
 </view>
 
 <audio id="audio" src="https://anydata.22332008.com/mini/examples/music/music.mp3"></audio>
+
+<view class='bottom-cursor' hidden="{{!showBottom}}">
+  <swiper autoplay="{{false}}" duration="{{duration}}" circular="{{true}}" indicator-color="rgba(255,255,255, 1)" indicator-active-color="rgba(244,106,100, 1)" indicator-dots="{{indicatorDots}}">
+    <block wx:for="{{bottomCursor}}">
+      <swiper-item>
+        <view>
+          <view wx:for="{{item}}" class='cursor-onepage'>
+            <view class='float-loop' class='cursor-item'>{{item.title}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>

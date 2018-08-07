@@ -53,7 +53,58 @@ Page({
     interval: 5000,
     duration: 1000,
     current: 0,
-    autoplay: false
+    autoplay: false,
+    showBottom: false,
+    bottomCursor: [
+      [{
+        img: 'sdfsd',
+        title: '123'
+      },
+      {
+        img: 'sdfsd',
+        title: '123'
+      },
+      {
+        img: 'sdfsd',
+        title: '123'
+      },
+      {
+        img: 'sdfsd',
+        title: '123'
+      },
+      {
+        img: 'sdfsd',
+        title: '123'
+      },
+      {
+        img: 'sdfsd',
+        title: '123'
+      },
+      {
+        img: 'sdfsd',
+        title: '123'
+      },
+      {
+        img: 'sdfsd',
+        title: '123'
+      }],
+      [{
+        img: 'sdfsd',
+        title: '123'
+      },
+      {
+        img: 'sdfsd',
+        title: '123'
+      },
+      {
+        img: 'sdfsd',
+        title: '123'
+      },
+      {
+        img: 'sdfsd',
+        title: '123'
+      }]
+    ]
   },
   canvasIdErrorCallback: function (e) {
     console.error('canvas画布启动失败：' + e.detail.errMsg)
@@ -112,9 +163,9 @@ Page({
     /**
      * 设置导航条
      */
-    wx.setNavigationBarTitle({
-      title: '中国银行深圳分行'
-    })
+    // wx.setNavigationBarTitle({
+    //   title: '中国银行深圳分行'
+    // })
 
     /**
      * 获取视频的高度宽度
@@ -148,7 +199,7 @@ Page({
         autoplay: true,
         current: 1
       })
-    }, 8000)
+    }, 10000)
   },
   downloadImg: function(img){
     if (Object.prototype.toString.call(img) === "[object Array]"){ // 加载一组图片
@@ -277,7 +328,7 @@ Page({
     //上传
     let $this = this;
     let src = recorderSrc;
-    console.log('录音文件地址是：'+src)
+    // console.log('录音文件地址是：'+src)
     if (!src) {
       wx.showToast({
         title: '没有听清',
@@ -490,10 +541,20 @@ Page({
     // console.log('冒泡')
     this.setData({
       showQuickInput: true,
-      showActivites: false
+      showActivites: false,
+      showBottom: false
     })
   },
   cancelBubble() {
     // console.log('取消冒泡')
+  },
+  showBottomContent() {
+    /**
+     * 切换底部操作栏显示和隐藏
+     */
+    console.log(this)
+    this.setData({
+      showBottom: true
+    })
   }
 })
