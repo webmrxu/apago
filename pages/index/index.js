@@ -58,63 +58,63 @@ Page({
     bottomCursor: [
       [{
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '客户端下载',
+        keyWord: '客户端下载'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '新版本介绍',
+        keyWord: '新版本介绍'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '手机银行限额',
+        keyWord: '手机银行限额'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '网上银行限额',
+        keyWord: '网上银行限额'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '自助关联',
+        keyWord: '自助关联'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '扫码取款',
+        keyWord: '扫码取款'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '话费/流量充值',
+        keyWord: '话费/流量充值'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '转账汇款',
+        keyWord: '转账汇款'
       }],
       [{
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '中银E代',
+        keyWord: '中银E代'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '二维码支付',
+        keyWord: '二维码支付'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '积存金',
+        keyWord: '积存金'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        title: '123',
-        keyWord: '76折'
+        title: '手机号转账',
+        keyWord: '手机号转账'
       }]
     ]
   },
@@ -451,6 +451,7 @@ Page({
     /**
      * 发送文字
      */
+    // console.log(text)
     if (!text) {
       return
     }
@@ -575,5 +576,20 @@ Page({
     this.setData({
       showBottom: status
     })
+  },
+  showQuickMes(event) {
+    /**
+     * 点击底部图文
+     */
+    // console.log(event.currentTarget.dataset)
+    let item = event.currentTarget.dataset.item
+    let keyWodrd = item.keyWord
+    // console.log(keyWodrd)
+    this.sendText(keyWodrd, hiddenBottom)
+    let hiddenBottom = function() {
+      this.setData({
+        showBottom: false
+      })
+    }
   }
 })

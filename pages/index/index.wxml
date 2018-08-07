@@ -83,7 +83,7 @@
         <view class='clearfix button-content'>
           <view wx:for="{{item}}" class='cursor-onepage clearfix'>
             
-            <view class='float-loop' class='cursor-item'>
+            <view class='float-loop' class='cursor-item' data-item="{{item}}" bindtap="showQuickMes">
               <view class="button-img border">
                 <image src="{{item.img}}" style='height:{{24}}px;width:{{24}}px' ></image>
               </view>
