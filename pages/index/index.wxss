@@ -319,10 +319,11 @@
   bottom: -16px;
   color: #aaa;
   width: 70px;
-  right: -8px;
+  left: 7px;
 }
 .b {
   margin-bottom: 20px;
+  min-width: 50px;
 }
 .parsing-tip image{
   position: relative;
