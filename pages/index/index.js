@@ -203,16 +203,6 @@ Page({
         })
       }
     })
-
-    /**
-     * 开始轮播
-     */
-    timer = setTimeout(() => {
-      this.setData({
-        autoplay: true,
-        current: 1
-      })
-    }, 13000)
   },
   downloadImg: function(img){
     if (Object.prototype.toString.call(img) === "[object Array]"){ // 加载一组图片
@@ -593,5 +583,16 @@ Page({
         showBottom: false
       })
     }
+  },
+  audioPlay() {
+    /**
+     * 开始轮播
+     */
+    timer = setTimeout(() => {
+      this.setData({
+        autoplay: true,
+        current: 1
+      })
+    }, 12000)
   }
 })

@@ -83,14 +83,14 @@
   
 </view>
 
-<audio id="audio" src="https://anydata.22332008.com/mini/examples/music/music.mp3"></audio>
+<audio bindplay="audioPlay" id="audio" src="https://anydata.22332008.com/mini/examples/music/music.mp3"></audio>
 
 <view class='bottom-cursor' hidden="{{!showBottom}}">
   <swiper autoplay="{{false}}" duration="{{duration}}" circular="{{true}}" indicator-color="rgba(255,255,255, 1)" indicator-active-color="rgba(244,106,100, 1)" indicator-dots="{{indicatorDots}}">
-    <block wx:for="{{bottomCursor}}">
+    <block wx:for="{{bottomCursor}}" wx:key="item">
       <swiper-item>
         <view class='clearfix button-content'>
-          <view wx:for="{{item}}" class='cursor-onepage clearfix'>
+          <view wx:for="{{item}}" wx:key="item" class='cursor-onepage clearfix'>
             
             <view class='float-loop' class='cursor-item' data-item="{{item}}" bindtap="showQuickMes">
               <view class="button-img border">
