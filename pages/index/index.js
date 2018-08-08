@@ -50,31 +50,31 @@ Page({
         keyWord: ''
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-1.gif',
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-11.gif',
         url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
         id: 1,
         keyWord: ''
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-2.gif',
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-3.gif',
         url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
         id: 2,
         keyWord: ''
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-3.gif',
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-4.gif',
         url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
         id: 3,
         keyWord: ''
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-4.gif',
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-5.gif',
         url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
         id: 4,
         keyWord: ''
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-5.gif',
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-2.gif',
         url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
         id: 5,
         keyWord: ''
@@ -88,77 +88,86 @@ Page({
     showBottom: false,
     bottomCursor: [
       [{
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-download',
         title: '客户端下载',
         keyWord: '客户端下载'
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-file-alt',
         title: '新版本介绍',
         keyWord: '新版本介绍'
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-mobile-alt',
         title: '手机银行限额',
         keyWord: '手机银行限额'
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-desktop',
         title: '网上银行限额',
         keyWord: '网上银行限额'
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fab fa-squarespace',
         title: '自助关联',
         keyWord: '自助关联'
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-expand',
         title: '扫码取款',
         keyWord: '扫码取款'
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-phone',
         title: '话费/流量充值',
         keyWord: '话费/流量充值'
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-credit-card',
         title: '转账汇款',
         keyWord: '转账汇款'
       }],
       [{
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-id-card',
         title: '中银E代',
         keyWord: '中银E代'
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-qrcode',
         title: '二维码支付',
         keyWord: '二维码支付'
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-boxes',
         title: '积存金',
         keyWord: '积存金'
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
-        icon: 'fa fa-calendar-check-o',
+        icon: 'fas fa-random',
         title: '手机号转账',
         keyWord: '手机号转账'
-      }]
+      },
+        {
+          icon: 'fas fa-suitcase',
+          title: '结售汇',
+          keyWord: '结售汇'
+        },
+        {
+          icon: 'fas fa-magic',
+          title: '防骗认证工具',
+          keyWord: '防骗认证工具'
+        },
+        {
+          icon: 'fas fa-shield-alt',
+          title: '网络安全',
+          keyWord: '网络安全'
+        },
+        {
+          icon: 'fas fa-street-view',
+          title: '网络钓鱼',
+          keyWord: '网络钓鱼'
+        }
+      ]
     ]
   },
   canvasIdErrorCallback: function (e) {
