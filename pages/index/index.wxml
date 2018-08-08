@@ -96,7 +96,7 @@
           <view wx:for="{{item}}" wx:key="item" class='cursor-onepage clearfix'>
             
             <view class='float-loop' class='cursor-item' data-item="{{item}}" bindtap="showQuickMes">
-              <view class="button-img border">
+              <view class="button-img border color">
                 <text class='{{item.icon}}'></text>
               </view>
               <view><text>{{item.title}}</text></view>

@@ -333,3 +333,6 @@
   width: 100%;
   position: fixed;
 }
+.button-img{
+  font-size: 14px;
+}
