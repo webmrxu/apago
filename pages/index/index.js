@@ -43,12 +43,42 @@ Page({
     currentTime: 0, // 当前视频播放的进度
     logoImg: 'https://www.apago.top/video/logos.png', // logo图片资源地址
     cursorImgs: [
-      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-0.gif',
-      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-1.gif',
-      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-2.gif',
-      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-3.gif',
-      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-4.gif',
-      'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-5.gif'
+      {
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-0.gif',
+        url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
+        id: 0,
+        keyWord: ''
+      },
+      {
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-1.gif',
+        url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
+        id: 1,
+        keyWord: ''
+      },
+      {
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-2.gif',
+        url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
+        id: 2,
+        keyWord: ''
+      },
+      {
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-3.gif',
+        url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
+        id: 3,
+        keyWord: ''
+      },
+      {
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-4.gif',
+        url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
+        id: 4,
+        keyWord: ''
+      },
+      {
+        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-5.gif',
+        url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
+        id: 5,
+        keyWord: ''
+      }
     ],
     indicatorDots: true,
     interval: 5000,
@@ -606,5 +636,12 @@ Page({
         current: 1
       })
     }, 12000)
+  },
+  gotoTeletext(event) {
+    let item = event.target.dataset.item
+    let url = item.url
+    wx.navigateTo({
+      url: '../teletext/teletext?url=' + url
+    })
   }
 })

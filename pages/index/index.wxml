@@ -8,9 +8,9 @@
   <view class='clearfix top-img-content'>
     <view class='top-img' style="height:{{686/1.6}}rpx" id="home-img">
       <swiper autoplay="{{autoplay}}" current="{{current}}" circular="{{true}}" indicator-color="rgba(255,255,255, 1)" indicator-active-color="rgba(244,106,100, 1)" indicator-dots="{{indicatorDots}}" style="height:100%"  interval="{{interval}}" duration="{{duration}}">
-        <block wx:for="{{cursorImgs}}" wx:key="item">
+        <block wx:for="{{cursorImgs}}" wx:key="item.keyWord">
           <swiper-item>
-            <image src="{{item}}" class="slide-image"/>
+            <image src="{{item.img}}" data-item="{{item}}" class="slide-image" bindtap="gotoTeletext"/>
           </swiper-item>
         </block>
       </swiper>
