@@ -329,3 +329,7 @@
   position: relative;
   top: 2px;
 }
+.top-bg-circle{
+  width: 100%;
+  position: fixed;
+}

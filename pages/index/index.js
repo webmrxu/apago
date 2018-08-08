@@ -59,61 +59,73 @@ Page({
     bottomCursor: [
       [{
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '客户端下载',
         keyWord: '客户端下载'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '新版本介绍',
         keyWord: '新版本介绍'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '手机银行限额',
         keyWord: '手机银行限额'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '网上银行限额',
         keyWord: '网上银行限额'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '自助关联',
         keyWord: '自助关联'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '扫码取款',
         keyWord: '扫码取款'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '话费/流量充值',
         keyWord: '话费/流量充值'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '转账汇款',
         keyWord: '转账汇款'
       }],
       [{
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '中银E代',
         keyWord: '中银E代'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '二维码支付',
         keyWord: '二维码支付'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '积存金',
         keyWord: '积存金'
       },
       {
         img: 'https://anydata.22332008.com/mini/examples/imgs/icon/icon_guest.png',
+        icon: 'fa fa-calendar-check-o',
         title: '手机号转账',
         keyWord: '手机号转账'
       }]

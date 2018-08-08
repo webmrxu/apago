@@ -1,6 +1,9 @@
 <!-- loop="loop" 循环 autoplay="autoplay" 自动播放 bindtimeupdate: 播放中获取播放进度 bindtap="onTap":点击-->
 <view bindtap="bubble">
   <view class='top-bg bgcolor' style='height:{{bgTopHeight}}px'></view>
+  <view class='top-bg-circle' style="top: {{bgTopHeight}}px" >
+    <image style="width: 750rpx; height: 68rpx;"  src='https://anydata.22332008.com/mini/examples/imgs/banyuan.png'></image>
+  </view>
 
   <view class='clearfix top-img-content'>
     <view class='top-img' style="height:{{686/1.6}}rpx" id="home-img">
@@ -94,7 +97,7 @@
             
             <view class='float-loop' class='cursor-item' data-item="{{item}}" bindtap="showQuickMes">
               <view class="button-img border">
-                <image src="{{item.img}}" style='height:{{24}}px;width:{{24}}px' ></image>
+                <text class='{{item.icon}}'></text>
               </view>
               <view><text>{{item.title}}</text></view>
             </view>
