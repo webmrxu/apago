@@ -154,6 +154,8 @@
 .chat-profile{
   position: relative;
   top: 4px;
+  border-radius: 20px;
+  overflow: hidden;
 }
 .logtab-button{
   border-radius: 4px;

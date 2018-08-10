@@ -24,9 +24,9 @@
       <view id='scroll-content'>
         <view wx:for="{{recorderResponseMsg}}" wx:key="_time" >
           <view class='clearfix chat-right' wx:if="{{item.right}}" id="{{item._time}}">
-            <view class='chat-profile'>
-              <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/user.png"></image>
-              
+            <view class='chat-profile'  style="width: 40px; height: 40px;">
+              <!-- <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/user.png"></image> -->
+              <open-data type="userAvatarUrl"></open-data>
             </view>
             <view class='chat-content-right relative {{item._rightVoice?"b":"a"}}'>
               {{item.right}}
