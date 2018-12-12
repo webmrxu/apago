@@ -2,7 +2,7 @@
 <view bindtap="bubble">
   <view class='top-bg bgcolor' style='height:{{bgTopHeight}}px'></view>
   <view class='top-bg-circle' style="top: {{bgTopHeight}}px" >
-    <image style="width: 750rpx; height: 68rpx;"  src='https://anydata.22332008.com/mini/examples/imgs/banyuan.png'></image>
+    <image style="width: 750rpx; height: 68rpx;"  src='http://www.apago.top/old/examples/imgs/banyuan.png'></image>
   </view>
 
   <view class='clearfix top-img-content'>
@@ -25,20 +25,20 @@
         <view wx:for="{{recorderResponseMsg}}" wx:key="_time" >
           <view class='clearfix chat-right' wx:if="{{item.right}}" id="{{item._time}}">
             <view class='chat-profile'  style="width: 40px; height: 40px;">
-              <!-- <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="https://anydata.22332008.com/mini/examples/imgs/user.png"></image> -->
+              <!-- <image style="width: 40px; height: 40px; background-color: #eeeeee;"  src="http://www.apago.top/old/examples/imgs/user.png"></image> -->
               <open-data type="userAvatarUrl"></open-data>
             </view>
             <view class='chat-content-right relative {{item._rightVoice?"b":"a"}}'>
               {{item.right}}
               <view class='parsing-tip' wx:if="{{item._rightVoice}}">
-                <image style="width: 12px; height: 12px;" src='https://anydata.22332008.com/mini/examples/imgs/icon_paring.png'></image> 语音识别
+                <image style="width: 12px; height: 12px;" src='http://www.apago.top/old/examples/imgs/icon_paring.png'></image> 语音识别
               </view>
             </view>
           </view >
 
           <view class='clearfix chat-left' wx:if="{{item.left}}" id="{{item._time}}">
             <view class='chat-profile' >
-              <image style="width: 40px; height: 40px;"  src="https://anydata.22332008.com/mini/examples/imgs/chat-zz-png.png"></image>
+              <image style="width: 40px; height: 40px;"  src="http://www.apago.top/old/examples/imgs/chat-zz-png.png"></image>
             </view>
             <view class='chat-content-left' wx:if="{{!item.teletext}}">{{item.left}}</view>
             <view class='chat-content-left' data-url='{{item.url}}' wx:if="{{item.teletext}}" bindtap="navigateTo">
@@ -57,8 +57,8 @@
     <view class="voice border-t {{showBottom? 'show-bottom':'hidden-bottom'}} {{showQuickInput?'show-quick':'hidden-quick'}}" catchtap="cancelBubble">
       <!-- <view class="voice-button " bindlongpress="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord"> -->
       <view class="voice-button " bindtap="toggleVoiceOrKeyboard">
-        <image hidden="{{voiceOrKeyboard == 'keyboard'}}" style="width: 32px; height: 32px;"  src="https://anydata.22332008.com/mini/examples/imgs/voice.png"></image>
-        <image hidden="{{voiceOrKeyboard == 'voice'}}" style="width: 32px; height: 32px;"  src="https://anydata.22332008.com/mini/examples/imgs/keyboard.png"></image>
+        <image hidden="{{voiceOrKeyboard == 'keyboard'}}" style="width: 32px; height: 32px;"  src="http://www.apago.top/old/examples/imgs/voice.png"></image>
+        <image hidden="{{voiceOrKeyboard == 'voice'}}" style="width: 32px; height: 32px;"  src="http://www.apago.top/old/examples/imgs/keyboard.png"></image>
       </view>
       <view class="voice-input">
         <input value="{{inputValue}}" hidden="{{voiceOrKeyboard == 'keyboard'}}" bindblur="inputBlur" bindfocus="inputFocus" class="border-b" maxlength="-1" cursor-spacing="10" confirm-hold="true" bindconfirm="sendTextMessage" confirm-type="send" bindinput="bindKeyInput"/>
@@ -70,7 +70,7 @@
 
       <view  class="quick-input {{showActivites?'show-ac':'hidden-ac'}}" hidden ="{{!showQuickInput}}" catchtap="toggleActivites">
         <view class="relative plus-button" bindtap="showBottomContent">
-          <image class="quick-button" style='height:32px;width:32px'  src="https://anydata.22332008.com/mini/examples/imgs/plus_icon.png">
+          <image class="quick-button" style='height:32px;width:32px'  src="http://www.apago.top/old/examples/imgs/plus_icon.png">
           </image>
         </view>
       </view>
@@ -78,15 +78,15 @@
   </view>
 
   <view class='voice-gif' hidden = "{{!isRecording}}">
-    <image style='height:{{100}}px;width:{{100}}px' src='https://anydata.22332008.com/mini/examples/imgs/voice.gif'></image>
+    <image style='height:{{100}}px;width:{{100}}px' src='http://www.apago.top/old/examples/imgs/voice.gif'></image>
   </view>
   <!-- <view class='voice-gif' hidden = "{{!isParsing}}">
-    <image style='height:{{100}}px;width:{{100}}px' src='https://anydata.22332008.com/mini/examples/imgs/downing.gif'></image>
+    <image style='height:{{100}}px;width:{{100}}px' src='http://www.apago.top/old/examples/imgs/downing.gif'></image>
   </view> -->
   
 </view>
 
-<audio bindplay="audioPlay" id="audio" src="https://anydata.22332008.com/mini/examples/music/music.mp3"></audio>
+<audio bindplay="audioPlay" id="audio" src="http://www.apago.top/old/examples/music/music.mp3"></audio>
 
 <view class='bottom-cursor' hidden="{{!showBottom}}">
   <swiper autoplay="{{false}}" duration="{{duration}}" circular="{{true}}" indicator-color="rgba(255,255,255, 1)" indicator-active-color="rgba(244,106,100, 1)" indicator-dots="{{indicatorDots}}">

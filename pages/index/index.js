@@ -44,37 +44,37 @@ Page({
     logoImg: 'https://www.apago.top/video/logos.png', // logo图片资源地址
     cursorImgs: [
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-0.gif',
-        url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
+        img: 'http://www.apago.top/old/examples/imgs/cursor/gif-0.gif',
+        url: 'https://www.apago.top/',
         id: 0,
         keyWord: ''
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-11.gif',
+        img: 'http://www.apago.top/old/examples/imgs/cursor/gif-11.gif',
         url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
         id: 1,
         keyWord: ''
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-3.gif',
+        img: 'http://www.apago.top/old/examples/imgs/cursor/gif-3.gif',
         url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
         id: 2,
         keyWord: ''
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-4.gif',
+        img: 'http://www.apago.top/old/examples/imgs/cursor/gif-4.gif',
         url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
         id: 3,
         keyWord: ''
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-5.gif',
+        img: 'http://www.apago.top/old/examples/imgs/cursor/gif-5.gif',
         url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
         id: 4,
         keyWord: ''
       },
       {
-        img: 'https://anydata.22332008.com/mini/examples/imgs/cursor/gif-2.gif',
+        img: 'http://www.apago.top/old/examples/imgs/cursor/gif-2.gif',
         url: 'https://mp.weixin.qq.com/s/jsFOXCYeMQnm3otsSY2i9Q',
         id: 5,
         keyWord: ''
